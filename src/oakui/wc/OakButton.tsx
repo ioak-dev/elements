@@ -1,5 +1,4 @@
 import React, { ReactNode, useEffect, useLayoutEffect, useRef } from 'react';
-import { useSelector } from 'react-redux';
 import { BUTTON_CLICK_EVENT } from '@oakui/core-stage/event/OakButtonEvent';
 
 interface Props {
@@ -60,8 +59,6 @@ interface Props {
 }
 
 const OakButton = (props: Props) => {
-  const profile = useSelector((state: any) => state.profile);
-
   const elementRef = useRef();
 
   const handleClick = (event: any) => {
@@ -109,7 +106,6 @@ const OakButton = (props: Props) => {
       size={props.size}
       shape={props.shape}
       type={props.type}
-      visualmode={profile.theme === 'theme_dark' ? 'dark' : 'light'}
       elevation={props.elevation}
       formGroupName={props.formGroupName}
     >
