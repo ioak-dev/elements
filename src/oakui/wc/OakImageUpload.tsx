@@ -1,5 +1,4 @@
 import React, { useState, useEffect, ReactElement, useRef } from 'react';
-import { useLocation } from 'react-router';
 
 interface Props {
   name?: string;

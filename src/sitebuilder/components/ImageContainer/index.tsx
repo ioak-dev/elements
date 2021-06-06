@@ -8,7 +8,7 @@ import {
   getImageContainerImgClass,
 } from '../../service/SitebuilderService';
 import ImageWizard from '../ImageWizard';
-import ControlButton from '../../../sitebuilder/ui/ControlButton';
+import ControlButton from '../../ui/ControlButton';
 
 interface Props {
   block: any;

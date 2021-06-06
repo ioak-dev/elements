@@ -1,16 +1,15 @@
 import React, { useState } from 'react';
 import './style.scss';
-import SingleSectionEditor from '../sitebuilder/editor/SingleSectionEditor';
+import SingleSectionEditor from '../SiteBuilder/editor/SingleSectionEditor';
 import { newId } from '../utils/BasicUtil';
 
-import './Hero.scss';
-import SplitSectionEditor from '../sitebuilder/editor/SplitSectionEditor';
+import SplitSectionEditor from '../SiteBuilder/editor/SplitSectionEditor';
 import OakViewer from '../oakui/OakViewer';
-import { toHtml } from '../sitebuilder/service/SitebuilderService';
-import SectionType from '../sitebuilder/SectionType';
-import SplitContentEditor from '../sitebuilder/editor/SplitContentEditor';
-import { ContentFrameItemDataType } from '../sitebuilder/ContentFrameType';
-import OverlapSectionEditor from '../sitebuilder/editor/OverlapSectionEditor';
+import { toHtml } from '../SiteBuilder/service/SitebuilderService';
+import SectionType from '../SiteBuilder/SectionType';
+import SplitContentEditor from '../SiteBuilder/editor/SplitContentEditor';
+import { ContentFrameItemDataType } from '../SiteBuilder/ContentFrameType';
+import OverlapSectionEditor from '../SiteBuilder/editor/OverlapSectionEditor';
 
 interface Props {
   history?: any;

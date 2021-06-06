@@ -3,7 +3,6 @@ import {
   INPUT_INPUT_EVENT,
 } from '@oakui/core-stage/event/OakInputEvent';
 import React, { useState, useEffect, ReactElement, useRef } from 'react';
-import { useLocation } from 'react-router';
 
 interface Props {
   name: string;
@@ -26,7 +25,6 @@ interface Props {
 }
 
 const OakCheckbox = (props: Props) => {
-  const location = useLocation();
   const elementRef = useRef();
 
   const handleChange = (event: any) => {

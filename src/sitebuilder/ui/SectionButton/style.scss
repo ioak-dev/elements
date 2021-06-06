@@ -1,0 +1,113 @@
+.section-button {
+  z-index: 1;
+  background-color: var(--color-default);
+  color: var(--color-default-i);
+  border: 2px solid var(--color-default);
+  box-shadow: none;
+  padding: 4px 10px;
+  height: 32px;
+  display: grid;
+  grid-auto-flow: column;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 12px;
+  font-family: Roboto, sans-serif;
+  font-weight: 500;
+  transition: color 250ms ease-in-out, background-color 250ms ease-in-out,
+    border-color 250ms ease-in-out;
+}
+.section-button:hover,
+.section-button:focus {
+  background-color: var(--color-default-dark);
+  color: var(--color-default-dark-i);
+  border: 2px solid var(--color-default-dark);
+}
+
+.section-button--color-primary {
+  background-color: var(--color-primary);
+  border: 2px solid var(--color-primary);
+  color: var(--color-primary-i);
+  &:hover,
+  &:focus {
+    background-color: var(--color-primary-dark);
+    border: 2px solid var(--color-primary-dark);
+    color: var(--color-primary-dark-i);
+  }
+}
+.section-button--color-secondary {
+  background-color: var(--color-secondary);
+  border: 2px solid var(--color-secondary);
+  color: var(--color-secondary-i);
+  &:hover,
+  &:focus {
+    background-color: var(--color-secondary-dark);
+    border: 2px solid var(--color-secondary-dark);
+    color: var(--color-secondary-dark-i);
+  }
+}
+
+.section-button--rounded {
+  border-radius: 4px;
+}
+.section-button--size-small {
+  height: 30px;
+  font-size: 12px;
+  padding: 4px 14px;
+}
+.section-button--size-large {
+  height: 46px;
+  font-size: 16px;
+  padding: 4px 22px;
+}
+.section-button--variant-appear {
+  background-color: transparent;
+  color: var(--action-button-background-color);
+}
+.section-button--variant-appear.section-button--color-default {
+  color: var(--color-default);
+  &:hover,
+  &:focus {
+    color: var(--color-default-i);
+  }
+}
+.section-button--variant-appear.section-button--color-primary {
+  color: var(--color-primary);
+  &:hover,
+  &:focus {
+    color: var(--color-primary-i);
+  }
+}
+.section-button--variant-appear.section-button--color-secondary {
+  color: var(--color-secondary);
+  &:hover,
+  &:focus {
+    color: var(--color-secondary-i);
+  }
+}
+
+.section-button--variant-disappear {
+  &:hover,
+  &:focus {
+    background-color: transparent;
+    color: var(--action-button-background-color);
+  }
+}
+.section-button--variant-disappear.section-button--color-default {
+  &:hover,
+  &:focus {
+    color: var(--color-default);
+  }
+}
+.section-button--variant-disappear.section-button--color-primary {
+  &:hover,
+  &:focus {
+    color: var(--color-primary);
+  }
+}
+.section-button--variant-disappear.section-button--color-secondary {
+  &:hover,
+  &:focus {
+    color: var(--color-secondary);
+  }
+}

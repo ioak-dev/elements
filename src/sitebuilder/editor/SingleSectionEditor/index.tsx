@@ -24,7 +24,7 @@ const SingleSectionEditor = (props: Props) => {
   const [isEditOpen, setIsEditOpen] = useState(false);
 
   const handleContentChange = (content: any) => {
-    console.log(content);
+    console.log('single section editor');
     const _value = { ...props.value, content };
     props.handleChange(_value);
   };
@@ -52,14 +52,12 @@ const SingleSectionEditor = (props: Props) => {
   }, [props.value]);
 
   const handleMetaChange = (value: any) => {
-    console.log(value);
     props.handleChange(value);
   };
 
   const handleChangeBackground = (value: any) => {
     const _value = { ...props.value };
     _value.background = value;
-    console.log(_value);
     props.handleChange(_value);
   };
 

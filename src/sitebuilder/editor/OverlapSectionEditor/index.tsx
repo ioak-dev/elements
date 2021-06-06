@@ -23,12 +23,6 @@ interface Props {
 const OverlapSectionEditor = (props: Props) => {
   const [isEditOpen, setIsEditOpen] = useState(false);
 
-  const handleContentChange = (content: any) => {
-    console.log(content);
-    const _value = { ...props.value, content };
-    props.handleChange(_value);
-  };
-
   useEffect(() => {
     const el = document.getElementById(elementId);
     if (
@@ -52,7 +46,6 @@ const OverlapSectionEditor = (props: Props) => {
   }, [props.value]);
 
   const handleMetaChange = (value: any) => {
-    console.log(value);
     const _value = { ...props.value, foregroundSection: value };
     props.handleChange(_value);
   };
@@ -60,18 +53,15 @@ const OverlapSectionEditor = (props: Props) => {
   const handleChangeBackground = (value: any) => {
     const _value = { ...props.value };
     _value.background = value;
-    console.log(_value);
     props.handleChange(_value);
   };
 
   const handleBackgroundSectionChange = (value: any) => {
-    console.log(value);
     const _value = { ...props.value, backgroundSection: value };
     props.handleChange(_value);
   };
 
   const handleForegroundSectionChange = (value: any) => {
-    console.log(value);
     const _value = { ...props.value, foregroundSection: value };
     props.handleChange(_value);
   };

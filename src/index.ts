@@ -13,10 +13,12 @@ import NavigationToolset from './block/section/NavigationToolset';
 
 import BlockEditor from './block/BlockEditor/index';
 
-import SingleSectionEditor from './sitebuilder/editor/SingleSectionEditor';
-import SplitSectionEditor from './sitebuilder/editor/SplitSectionEditor';
-import SplitContentEditor from './sitebuilder/editor/SplitContentEditor';
-import OverlapSectionEditor from './sitebuilder/editor/OverlapSectionEditor';
+import SingleSectionEditor from './SiteBuilder/editor/SingleSectionEditor';
+import SplitSectionEditor from './SiteBuilder/editor/SplitSectionEditor';
+import SplitContentEditor from './SiteBuilder/editor/SplitContentEditor';
+import OverlapSectionEditor from './SiteBuilder/editor/OverlapSectionEditor';
+
+import SiteBuilder from './SiteBuilder/index';
 
 import RichTextControlType from './block/editor/RichTextEditor/RichTextControlType';
 import BlockType from './block/BlockEditor/BlockType';
@@ -29,13 +31,13 @@ import {
   ContentFrameItemDataType,
   ContentFrameItemType,
   ContentFrameMetaType,
-} from './sitebuilder/ContentFrameType';
-import ContentType from './sitebuilder/ContentType';
-import SectionType from './sitebuilder/SectionType';
-import TextType from './sitebuilder/TextType';
+} from './SiteBuilder/ContentFrameType';
+import ContentType from './SiteBuilder/ContentType';
+import SectionType from './SiteBuilder/SectionType';
+import TextType from './SiteBuilder/TextType';
 
 import * as BlockService from './block/service/BlockService';
-import * as SitebuilderService from './sitebuilder/service/SitebuilderService';
+import * as SitebuilderService from './SiteBuilder/service/SitebuilderService';
 
 export {
   BlockEditor,
@@ -54,6 +56,7 @@ export {
   RichTextControlType,
   BlockType,
   BlockService,
+  SiteBuilder,
   SingleSectionEditor,
   SplitSectionEditor,
   SplitContentEditor,

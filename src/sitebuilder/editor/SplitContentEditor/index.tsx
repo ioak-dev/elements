@@ -31,25 +31,6 @@ const SplitContentEditor = (props: Props) => {
     props.handleChange(_value);
   };
 
-  const handleLeftMetaChange = (value: any) => {
-    const _value = { ...props.value };
-    _value.left = value;
-    _value.right = { ..._value.right, height: value.height };
-    props.handleChange(_value);
-  };
-
-  const handleRightMetaChange = (value: any) => {
-    const _value = { ...props.value };
-    _value.right = value;
-    _value.left = { ..._value.left, height: value.height };
-    props.handleChange(_value);
-  };
-  const handleContentChange = (content: any) => {
-    console.log(content);
-    const _value = { ...props.value, content };
-    props.handleChange(_value);
-  };
-
   useEffect(() => {
     const el = document.getElementById(elementId);
     if (
@@ -73,14 +54,12 @@ const SplitContentEditor = (props: Props) => {
   }, [props.value]);
 
   const handleChange = (value: any) => {
-    console.log(value);
     props.handleChange(value);
   };
 
   const handleChangeBackground = (value: any) => {
     const _value = { ...props.value };
     _value.background = value;
-    console.log(_value);
     props.handleChange(_value);
   };
 

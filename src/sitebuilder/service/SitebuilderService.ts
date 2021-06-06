@@ -11,7 +11,6 @@ const tinycolor = require('tinycolor2');
 export const toHtml = (blocks: any[]) => {
   let res = '';
   blocks.forEach((block) => {
-    console.log(block);
     switch (block.type) {
       case SectionType.SINGLE_SECTION:
         res += getHtmlForSingleSectionEditor(block);
@@ -67,7 +66,6 @@ const getHtmlForSplitSection = (block: any) => {
   result += right;
   result += '</div>';
   result += '</div>';
-  console.log(result);
   return result;
 };
 
@@ -139,7 +137,6 @@ const getTextBlock = (textBlock: any, align: any) => {
 const getActionLinks = (actionBlock: any, align: any) => {
   let res = `<div class="elements-site__action elements-site__action--align-${align}">`;
   actionBlock.data.items.forEach((item: any) => {
-    console.log(actionBlock.meta, item);
     res += getActionButton(actionBlock.meta, item);
   });
   res += '</div>';

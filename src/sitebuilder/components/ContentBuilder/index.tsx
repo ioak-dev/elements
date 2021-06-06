@@ -20,7 +20,6 @@ const ContentBuilder = (props: Props) => {
   const [groupId, setGroupId] = useState(newId());
 
   const handleChange = (item: any) => {
-    console.log(item, props.items);
     const index = props.items.findIndex((_item: any) => item.id === _item.id);
     if (index >= 0) {
       const _items = [...props.items];
