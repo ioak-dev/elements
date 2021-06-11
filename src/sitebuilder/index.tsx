@@ -22,6 +22,8 @@ interface Props {
 }
 
 const SiteBuilder = (props: Props) => {
+  const [currentEditorId, setCurrentEditorId] = useState('');
+
   const handleChange = (section: any, value: any) => {
     const _value = [...props.value];
     const index = _value.findIndex((item) => item.id === section.id);
@@ -80,13 +82,14 @@ const SiteBuilder = (props: Props) => {
 
   const add = (section?: any) => {
     const _value: any[] = [...props.value];
-    const index = _value.findIndex((item) => item.id === section.id);
+    const index = _value.findIndex((item) => item.id === section?.id);
     const newBlock = getNewSection();
     if (index >= 0) {
       _value.splice(index, 0, newBlock);
     } else {
       _value.push(newBlock);
     }
+    console.log(_value);
     props.handleChange(_value);
     // ScrollToBlockCommand.next({ blockId: newBlock.id });
   };
@@ -213,6 +216,7 @@ const SiteBuilder = (props: Props) => {
                 handleNavigation(section, actionType)
               }
               hideNew={!section.type}
+              startEditing={() => setCurrentEditorId(section.id)}
             />
           </div>
           {!section.type && (
@@ -230,24 +234,32 @@ const SiteBuilder = (props: Props) => {
             <SingleSectionEditor
               value={section}
               handleChange={(value: any) => handleChange(section, value)}
+              currentEditorId={currentEditorId}
+              stopEditing={() => setCurrentEditorId('')}
             />
           )}
           {section.type === SectionType.SPLIT_SECTION && (
             <SplitSectionEditor
               value={section}
               handleChange={(value: any) => handleChange(section, value)}
+              currentEditorId={currentEditorId}
+              stopEditing={() => setCurrentEditorId('')}
             />
           )}
           {section.type === SectionType.SPLIT_CONTENT && (
             <SplitContentEditor
               value={section}
               handleChange={(value: any) => handleChange(section, value)}
+              currentEditorId={currentEditorId}
+              stopEditing={() => setCurrentEditorId('')}
             />
           )}
           {section.type === SectionType.OVERLAP_SECTION && (
             <OverlapSectionEditor
               value={section}
               handleChange={(value: any) => handleChange(section, value)}
+              currentEditorId={currentEditorId}
+              stopEditing={() => setCurrentEditorId('')}
             />
           )}
         </div>

@@ -30,13 +30,13 @@ const NewSection = (props: Props) => {
     <div className="elements-editor-section">
       <div className="elements-editor-section__toolbar">
         <div className="elements-editor-section__toolbar__left">
-          <Sectionlabel label={props.label || 'NEW BLOCK'} />
-        </div>
-        <div className="elements-editor-section__toolbar__right">
           <NavigationToolset
             actions={props.navigationActions}
             handleAction={handleNavigation}
           />
+        </div>
+        <div className="elements-editor-section__toolbar__right">
+          <Sectionlabel label={props.label || 'NEW BLOCK'} />
         </div>
       </div>
       <div className="elements-editor-section__editor">
@@ -47,13 +47,15 @@ const NewSection = (props: Props) => {
             value={props.block.type}
             handleChange={handleChange}
           >
-            {props.supportedTypes.map((item) => (
-              <div key={item.value}>
-                <OakRadio radioGroupName={groupId} name={item.value}>
-                  {item.label}
-                </OakRadio>
-              </div>
-            ))}
+            <div className="new-section__container">
+              {props.supportedTypes.map((item) => (
+                <div key={item.value}>
+                  <OakRadio radioGroupName={groupId} name={item.value}>
+                    {item.label}
+                  </OakRadio>
+                </div>
+              ))}
+            </div>
           </OakRadioGroup>
         </div>
       </div>

@@ -1,10 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { newId } from '../../../utils/BasicUtil';
 import './style.scss';
-import {
-  getActionButtonClass,
-  getActionButtonStyle,
-} from '../../service/SitebuilderService';
 
 interface Props {
   children: any;

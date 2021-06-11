@@ -1,0 +1,12 @@
+.ql-editor p,
+p {
+  margin-bottom: 24px;
+  font-size: var(--oak-typography-body1-font-size);
+  font-weight: 300;
+  line-height: var(--oak-typography-body1-line-height);
+  letter-spacing: var(--oak-typography-body1-letter-spacing);
+  font-family: var(--elements-editor-font-family-body);
+}
+.ql-editor p {
+  margin-bottom: 24px !important;
+}

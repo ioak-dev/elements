@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './style.scss';
 import NavigationActionType from '../NavigationActionType';
-import ToolButton from '../../ui/ToolButton';
+import SectionButton from '../../../SiteBuilder/ui/SectionButton';
 
 interface Props {
   actions: NavigationActionType[];
@@ -13,32 +13,32 @@ const NavigationToolset = (props: Props) => {
       {props.actions.map((item) => (
         <div className="navigation-toolset__item" key={item}>
           {item === NavigationActionType.UP && (
-            <ToolButton handleClick={() => props.handleAction(item)}>
+            <SectionButton handleClick={() => props.handleAction(item)}>
               <svg id="icon-arrow_upward" viewBox="0 0 12 12">
                 <path d="M1.992 6l4.008-4.008 4.008 4.008-0.727 0.703-2.789-2.789v6.094h-0.984v-6.094l-2.813 2.789z" />
               </svg>
-            </ToolButton>
+            </SectionButton>
           )}
           {item === NavigationActionType.DOWN && (
-            <ToolButton handleClick={() => props.handleAction(item)}>
+            <SectionButton handleClick={() => props.handleAction(item)}>
               <svg id="icon-arrow_downward" viewBox="0 0 12 12">
                 <path d="M10.008 6l-4.008 4.008-4.008-4.008 0.727-0.703 2.789 2.789v-6.094h0.984v6.094l2.813-2.789z" />
               </svg>
-            </ToolButton>
+            </SectionButton>
           )}
           {item === NavigationActionType.NEW && (
-            <ToolButton handleClick={() => props.handleAction(item)}>
+            <SectionButton handleClick={() => props.handleAction(item)}>
               <svg id="icon-add" viewBox="0 0 12 12">
                 <path d="M9.492 6.492h-3v3h-0.984v-3h-3v-0.984h3v-3h0.984v3h3v0.984z" />
               </svg>
-            </ToolButton>
+            </SectionButton>
           )}
           {item === NavigationActionType.DELETE && (
-            <ToolButton handleClick={() => props.handleAction(item)}>
+            <SectionButton handleClick={() => props.handleAction(item)}>
               <svg id="icon-delete" viewBox="0 0 12 12">
                 <path d="M9.492 1.992v1.008h-6.984v-1.008h1.734l0.516-0.492h2.484l0.516 0.492h1.734zM3 9.492v-6h6v6q0 0.398-0.305 0.703t-0.703 0.305h-3.984q-0.398 0-0.703-0.305t-0.305-0.703z" />
               </svg>
-            </ToolButton>
+            </SectionButton>
           )}
         </div>
       ))}

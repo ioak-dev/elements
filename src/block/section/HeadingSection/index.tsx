@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import Sectionlabel from '../../ui/SectionLabel';
-import ToolButton from '../../ui/ToolButton';
+import SectionButton from '../../../SiteBuilder/ui/SectionButton';
 import HeadingEditor from '../../editor/HeadingEditor';
 import NavigationActionType from '../NavigationActionType';
 import NavigationToolset from '../NavigationToolset';
@@ -32,22 +32,28 @@ const HeadingSection = (props: Props) => {
     <div className="elements-editor-section">
       <div className="elements-editor-section__toolbar">
         <div className="elements-editor-section__toolbar__left">
-          <Sectionlabel label={props.label || 'HEADING'} />
-          {!props.fixed && (
-            <ToolButton handleClick={() => handleLevelChange(1)}>H1</ToolButton>
-          )}
-          {!props.fixed && (
-            <ToolButton handleClick={() => handleLevelChange(2)}>H2</ToolButton>
-          )}
-          {!props.fixed && (
-            <ToolButton handleClick={() => handleLevelChange(3)}>H3</ToolButton>
-          )}
-        </div>
-        <div className="elements-editor-section__toolbar__right">
           <NavigationToolset
             actions={props.navigationActions}
             handleAction={handleNavigation}
           />
+        </div>
+        <div className="elements-editor-section__toolbar__right">
+          {!props.fixed && (
+            <SectionButton handleClick={() => handleLevelChange(1)}>
+              H1
+            </SectionButton>
+          )}
+          {!props.fixed && (
+            <SectionButton handleClick={() => handleLevelChange(2)}>
+              H2
+            </SectionButton>
+          )}
+          {!props.fixed && (
+            <SectionButton handleClick={() => handleLevelChange(3)}>
+              H3
+            </SectionButton>
+          )}
+          <Sectionlabel label={props.label || 'HEADING'} />
         </div>
       </div>
       <div className="elements-editor-section__editor">

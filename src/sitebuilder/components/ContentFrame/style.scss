@@ -2,8 +2,10 @@
   min-width: 100px;
   min-height: 50px;
   position: relative;
-  border: 1px dotted grey;
   margin-bottom: 46px;
+  &.elements-site__content-frame--border-thickness-none {
+    border: 1px dotted grey;
+  }
 }
 .content-frame__action {
   position: absolute;

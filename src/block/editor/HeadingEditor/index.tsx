@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { getHeadingClass } from 'src/block/service/EditorHelperService';
 import './style.scss';
 
 interface Props {
@@ -15,9 +16,7 @@ const HeadingEditor = (props: Props) => {
   return (
     <div className="heading-editor">
       <input
-        className={`heading-editor__input heading-editor__input--level-${
-          props.value.data.level || 1
-        }`}
+        className={`heading-editor__input ${getHeadingClass(props.value)}`}
         placeholder={props.placeholder}
         value={props.value.data.text}
         onChange={handleChange}

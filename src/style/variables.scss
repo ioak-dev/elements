@@ -121,3 +121,12 @@
 .elements-site-color-picker {
   width: 80px;
 }
+
+* {
+  --elements-editor-font-family-body: inherit;
+  --elements-editor-font-family-h1: inherit;
+  --elements-editor-font-family-h2: inherit;
+  --elements-editor-font-family-h3: inherit;
+  --elements-editor-font-family-h4: inherit;
+  --elements-editor-font-family-list: inherit;
+}

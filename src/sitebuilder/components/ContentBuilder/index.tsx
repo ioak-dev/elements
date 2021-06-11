@@ -7,7 +7,7 @@ import {
 } from '../../ContentFrameType';
 import { newId } from '../../../utils/BasicUtil';
 import TextInput from '../TextInput';
-import { getContentClass } from '../../service/SitebuilderService';
+import { getContentClass } from '../../service/EditorHelperService';
 import ImageContainer from '../ImageContainer';
 import ActionLinks from '../ActionLinks';
 

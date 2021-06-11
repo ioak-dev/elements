@@ -2,15 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { newId } from '../../../utils/BasicUtil';
 import './style.scss';
 import MetaDetails from './MetaDetails';
-import ContentBuilder from '../../components/ContentBuilder';
-import ContentType from '../../ContentType';
 import BackgroundView from '../../components/BackgroundView';
-import {
-  getContentClass,
-  getContentContainerClass,
-  getTextAlignment,
-} from '../../service/SitebuilderService';
-import ContentFrame from '../../components/ContentFrame';
+import { getContentContainerClass } from '../../service/EditorHelperService';
 import ContentFrameGroup from '../../components/ContentFrameGroup';
 
 interface Props {
@@ -19,10 +12,10 @@ interface Props {
   placeholder?: string;
   handleEditRequest?: any;
   children?: any;
+  currentEditorId?: string;
+  stopEditing?: any;
 }
 const SingleSectionEditor = (props: Props) => {
-  const [isEditOpen, setIsEditOpen] = useState(false);
-
   const handleContentChange = (content: any) => {
     console.log('single section editor');
     const _value = { ...props.value, content };
@@ -67,21 +60,16 @@ const SingleSectionEditor = (props: Props) => {
     <>
       {!props.handleEditRequest && (
         <MetaDetails
-          isActive={isEditOpen}
+          isActive={props.currentEditorId === props.value.id}
           handleChange={handleMetaChange}
           value={props.value}
-          deactivate={() => setIsEditOpen(false)}
+          deactivate={props.stopEditing}
         />
       )}
 
       <BackgroundView
         value={props.value.background}
         handleChange={handleChangeBackground}
-        handleEditRequest={
-          props.handleEditRequest
-            ? () => props.handleEditRequest()
-            : () => setIsEditOpen(true)
-        }
       >
         {props.children}
         <div

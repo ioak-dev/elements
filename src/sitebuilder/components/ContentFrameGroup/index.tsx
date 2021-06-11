@@ -1,11 +1,14 @@
 import React, { useEffect, useState } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faPlus, faThLarge } from '@fortawesome/free-solid-svg-icons';
 import { newId } from '../../../utils/BasicUtil';
-import { getContentFrameGroupClass } from '../../service/SitebuilderService';
+import { getContentFrameGroupClass } from '../../service/EditorHelperService';
 import ContentFrame from '../ContentFrame';
 import {
   ContentFrameGroupType,
   ContentFrameType,
 } from '../../ContentFrameType';
+import ControlButton from '../../ui/ControlButton';
 
 interface Props {
   layout: string;
@@ -28,6 +31,7 @@ const ContentFrameGroup = (props: Props) => {
       id: newId(),
       items: [],
       meta: {
+        borderThickness: 'none',
         color: 'none',
         gap: 'small',
         horizontalPadding: 'small',
@@ -73,6 +77,11 @@ const ContentFrameGroup = (props: Props) => {
           />
         </div>
       ))}
+      {props.content.items.length === 0 && (
+        <ControlButton handleClick={handleAdd} circle>
+          <FontAwesomeIcon icon={faThLarge} />
+        </ControlButton>
+      )}
     </div>
   );
 };

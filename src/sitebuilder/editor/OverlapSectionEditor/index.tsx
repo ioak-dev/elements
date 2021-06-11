@@ -2,27 +2,17 @@ import React, { useEffect, useState } from 'react';
 import { newId } from '../../../utils/BasicUtil';
 import './style.scss';
 import MetaDetails from './MetaDetails';
-import ContentBuilder from '../../components/ContentBuilder';
-import ContentType from '../../ContentType';
-import BackgroundView from '../../components/BackgroundView';
-import {
-  getContentClass,
-  getContentContainerClass,
-  getOverlapSectionClass,
-  getTextAlignment,
-} from '../../service/SitebuilderService';
-import ContentFrame from '../../components/ContentFrame';
-import ContentFrameGroup from '../../components/ContentFrameGroup';
+import { getOverlapSectionClass } from '../../service/EditorHelperService';
 import SingleSectionEditor from '../SingleSectionEditor';
 
 interface Props {
   value: any;
   handleChange: any;
   placeholder?: string;
+  currentEditorId?: string;
+  stopEditing?: any;
 }
 const OverlapSectionEditor = (props: Props) => {
-  const [isEditOpen, setIsEditOpen] = useState(false);
-
   useEffect(() => {
     const el = document.getElementById(elementId);
     if (
@@ -71,10 +61,10 @@ const OverlapSectionEditor = (props: Props) => {
   return (
     <>
       <MetaDetails
-        isActive={isEditOpen}
+        isActive={props.currentEditorId === props.value.id}
         handleChange={handleMetaChange}
         value={props.value.foregroundSection}
-        deactivate={() => setIsEditOpen(false)}
+        deactivate={props.stopEditing}
       />
       <SingleSectionEditor
         value={props.value.backgroundSection}
@@ -91,7 +81,6 @@ const OverlapSectionEditor = (props: Props) => {
           <SingleSectionEditor
             value={props.value.foregroundSection}
             handleChange={handleForegroundSectionChange}
-            handleEditRequest={() => setIsEditOpen(true)}
           />
         </div>
       </SingleSectionEditor>

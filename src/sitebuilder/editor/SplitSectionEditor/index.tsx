@@ -4,17 +4,17 @@ import BackgroundView from '../../components/BackgroundView';
 import {
   getContentContainerClass,
   getSplitSectionClass,
-} from '../../service/SitebuilderService';
+} from '../../service/EditorHelperService';
 import ContentFrameGroup from '../../components/ContentFrameGroup';
 
 interface Props {
   value: any;
   handleChange: any;
   placeholder?: string;
+  currentEditorId?: string;
+  stopEditing?: any;
 }
 const SplitSectionEditor = (props: Props) => {
-  const [isEditOpen, setIsEditOpen] = useState(false);
-
   const handleContentLeftChange = (content: any) => {
     const _value = { ...props.value };
     _value.left.content = content;
@@ -72,10 +72,10 @@ const SplitSectionEditor = (props: Props) => {
   return (
     <>
       <MetaDetails
-        isActive={isEditOpen}
+        isActive={props.currentEditorId === props.value.id}
         handleChange={handleChange}
         value={props.value}
-        deactivate={() => setIsEditOpen(false)}
+        deactivate={props.stopEditing}
       />
 
       <div className={getSplitSectionClass(props.value.proportion)}>
@@ -112,7 +112,6 @@ const SplitSectionEditor = (props: Props) => {
           <BackgroundView
             value={props.value.right.background}
             handleChange={handleChangeRightBackground}
-            handleEditRequest={() => setIsEditOpen(true)}
             handleResizeDown={
               props.value.proportion < 3 ? () => handleResizeDown() : null
             }

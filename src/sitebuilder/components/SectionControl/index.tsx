@@ -3,7 +3,11 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faArrowDown,
   faArrowUp,
+  faCog,
+  faPencilAlt,
+  faPlus,
   faTrash,
+  faTrashAlt,
 } from '@fortawesome/free-solid-svg-icons';
 import './style.scss';
 import { newId } from '../../../utils/BasicUtil';
@@ -18,6 +22,7 @@ interface Props {
   single?: boolean;
   handleNavigation: any;
   hideNew?: boolean;
+  startEditing?: any;
 }
 const SectionControl = (props: Props) => {
   const handleNavigation = (value: NavigationActionType) => {
@@ -50,11 +55,11 @@ const SectionControl = (props: Props) => {
           <SectionButton
             handleClick={() => handleNavigation(NavigationActionType.NEW)}
           >
-            New section
+            <FontAwesomeIcon icon={faPlus} />
           </SectionButton>
         )}
-      </div>
-      <div className="section-control__right">
+        {/* </div>
+      <div className="section-control__right"> */}
         {!props.single && !props.first && (
           <SectionButton
             handleClick={() => handleNavigation(NavigationActionType.UP)}
@@ -69,11 +74,16 @@ const SectionControl = (props: Props) => {
             <FontAwesomeIcon icon={faArrowDown} />
           </SectionButton>
         )}
+        {props.startEditing && (
+          <SectionButton handleClick={props.startEditing}>
+            <FontAwesomeIcon icon={faCog} />
+          </SectionButton>
+        )}
         {!props.single && (
           <SectionButton
             handleClick={() => handleNavigation(NavigationActionType.DELETE)}
           >
-            <FontAwesomeIcon icon={faTrash} />
+            <FontAwesomeIcon icon={faTrashAlt} />
           </SectionButton>
         )}
       </div>

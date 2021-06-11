@@ -1,12 +1,3 @@
-import {
-  faArrowDown,
-  faArrowUp,
-  faCog,
-  faEdit,
-  faPen,
-  faTrash,
-} from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { useEffect, useState } from 'react';
 import OakModal from '../../../oakui/wc/OakModal';
 import OakButton from '../../../oakui/wc/OakButton';
@@ -14,8 +5,7 @@ import { newId } from '../../../utils/BasicUtil';
 import './style.scss';
 import OakClickArea from '../../../oakui/wc/OakClickArea';
 import MetaDetails from './MetaDetails';
-import ActionButton from '../../../block/ui/ActionButton';
-import { getTextClass } from '../../service/SitebuilderService';
+import { getTextClass, getTextStyle } from '../../service/EditorHelperService';
 import { ContentFrameItemType } from '../../ContentFrameType';
 
 const tinycolor = require('tinycolor2');
@@ -43,18 +33,15 @@ const TextInput = (props: Props) => {
     const viewEl = document.getElementById(`view-${state.id}`);
     const previewEl = document.getElementById(`preview-${state.id}`);
     const placeholderEl = document.getElementById(`placeholder-${state.id}`);
-    let color = null;
-    if (props.block.meta.color === 'custom') {
-      color = props.block.meta.hex;
-    }
+    const computedStyle = getTextStyle(props.block, props.align);
     if (viewEl) {
-      viewEl.style.color = color;
+      viewEl.style.color = computedStyle.color;
     }
     if (previewEl) {
-      previewEl.style.color = color;
+      previewEl.style.color = computedStyle.color;
     }
     if (placeholderEl) {
-      placeholderEl.style.color = color;
+      placeholderEl.style.color = computedStyle.color;
     }
   }, [props.block, props.align]);
 

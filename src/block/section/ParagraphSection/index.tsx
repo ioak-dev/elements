@@ -25,13 +25,13 @@ const ParagraphSection = (props: Props) => {
     <div className="elements-editor-section">
       <div className="elements-editor-section__toolbar">
         <div className="elements-editor-section__toolbar__left">
-          <Sectionlabel label={props.label || 'PARAGRAPH'} />
-        </div>
-        <div className="elements-editor-section__toolbar__right">
           <NavigationToolset
             actions={props.navigationActions}
             handleAction={handleNavigation}
           />
+        </div>
+        <div className="elements-editor-section__toolbar__right">
+          <Sectionlabel label={props.label || 'PARAGRAPH'} />
         </div>
       </div>
       <div className="elements-editor-section__editor">

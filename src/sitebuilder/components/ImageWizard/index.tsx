@@ -14,7 +14,7 @@ interface Props {
   deactivate: any;
   heading?: string;
   supportedTypes?: ('SOLID-COLOR' | 'IMAGE' | 'UNSPLASH')[];
-  supportedModifiers?: ('OVERLAY' | 'PARALLAX' | 'HEIGHT')[];
+  supportedModifiers?: ('OVERLAY' | 'PARALLAX' | 'HEIGHT' | 'SHAPE')[];
 }
 const ImageWizard = (props: Props) => {
   const [groupId, setGroupId] = useState(newId());
@@ -143,6 +143,64 @@ const ImageWizard = (props: Props) => {
                     </OakRadio>
                   </OakRadioGroup>
                 )}
+                {(!props.supportedModifiers ||
+                  props.supportedModifiers.includes('SHAPE')) && (
+                  <OakRadioGroup
+                    name="shape"
+                    radioGroupName={`shape-${groupId}`}
+                    value={props.imageData.meta.shape}
+                    label="Image shape"
+                    handleChange={handleMetaChange}
+                    gutterBottom
+                  >
+                    <OakRadio name="auto" radioGroupName={`shape-${groupId}`}>
+                      Auto
+                    </OakRadio>
+                    <OakRadio name="square" radioGroupName={`shape-${groupId}`}>
+                      Square
+                    </OakRadio>
+                    <OakRadio name="circle" radioGroupName={`shape-${groupId}`}>
+                      Circle
+                    </OakRadio>
+                  </OakRadioGroup>
+                )}
+                {(!props.supportedModifiers ||
+                  props.supportedModifiers.includes('SHAPE')) &&
+                  props.imageData.meta.shape !== 'circle' && (
+                    <OakRadioGroup
+                      name="borderRadius"
+                      radioGroupName={`borderRadius-${groupId}`}
+                      value={props.imageData.meta.borderRadius}
+                      label="Border radius"
+                      handleChange={handleMetaChange}
+                      gutterBottom
+                    >
+                      <OakRadio
+                        name="none"
+                        radioGroupName={`borderRadius-${groupId}`}
+                      >
+                        None
+                      </OakRadio>
+                      <OakRadio
+                        name="small"
+                        radioGroupName={`borderRadius-${groupId}`}
+                      >
+                        Small
+                      </OakRadio>
+                      <OakRadio
+                        name="medium"
+                        radioGroupName={`borderRadius-${groupId}`}
+                      >
+                        Medium
+                      </OakRadio>
+                      <OakRadio
+                        name="large"
+                        radioGroupName={`borderRadius-${groupId}`}
+                      >
+                        Large
+                      </OakRadio>
+                    </OakRadioGroup>
+                  )}
                 {(!props.supportedModifiers ||
                   props.supportedModifiers.includes('OVERLAY')) && (
                   <OakRadioGroup

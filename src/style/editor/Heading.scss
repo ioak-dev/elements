@@ -1,0 +1,39 @@
+.elements-editor__heading {
+  // font-family: var(--elements-editor-font-family-heading);
+}
+
+.elements-editor__heading--level-1 {
+  font-size: var(--oak-typography-h1-font-size);
+  font-weight: var(--oak-typography-h1-font-weight);
+  line-height: var(--oak-typography-h1-line-height);
+  letter-spacing: var(--oak-typography-h1-letter-spacing);
+  margin-bottom: 24px;
+  font-family: var(--elements-editor-font-family-h1);
+}
+
+.elements-editor__heading--level-2 {
+  font-size: var(--oak-typography-h2-font-size);
+  font-weight: var(--oak-typography-h2-font-weight);
+  line-height: var(--oak-typography-h2-line-height);
+  letter-spacing: var(--oak-typography-h2-letter-spacing);
+  margin-bottom: 24px;
+  font-family: var(--elements-editor-font-family-h2);
+}
+
+.elements-editor__heading--level-3 {
+  font-size: var(--oak-typography-h3-font-size);
+  font-weight: var(--oak-typography-h3-font-weight);
+  line-height: var(--oak-typography-h3-line-height);
+  letter-spacing: var(--oak-typography-h3-letter-spacing);
+  margin-bottom: 24px;
+  font-family: var(--elements-editor-font-family-h3);
+}
+
+.elements-editor__heading--level-4 {
+  font-size: var(--oak-typography-h4-font-size);
+  font-weight: var(--oak-typography-h4-font-weight);
+  line-height: var(--oak-typography-h4-line-height);
+  letter-spacing: var(--oak-typography-h4-letter-spacing);
+  margin-bottom: 24px;
+  font-family: var(--elements-editor-font-family-h4);
+}

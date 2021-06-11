@@ -2,6 +2,7 @@
   height: 100%;
   box-sizing: border-box;
   display: flex;
+  overflow: hidden;
 }
 .elements-site__content-frame--padding-x-small {
   padding-left: 10px;
@@ -79,7 +80,7 @@
   background-color: var(--color-secondary);
 }
 .elements-site__content-frame--color-custom {
-  background-color: var(--content-frame-color);
+  background-color: var(--content-frame-background-color);
 }
 
 .elements-site__content-frame--border {

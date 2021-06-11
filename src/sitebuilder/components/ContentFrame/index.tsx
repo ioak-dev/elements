@@ -4,6 +4,7 @@ import {
   faCog,
   faLaptopMedical,
   faPlus,
+  faThLarge,
 } from '@fortawesome/free-solid-svg-icons';
 import { newId } from '../../../utils/BasicUtil';
 import './style.scss';
@@ -14,7 +15,7 @@ import BackgroundView from '../BackgroundView';
 import {
   getContentFrameClass,
   getContentFrameStyle,
-} from '../../service/SitebuilderService';
+} from '../../service/EditorHelperService';
 import {
   ContentFrameItemDataType,
   ContentFrameType,
@@ -48,7 +49,10 @@ const ContentFrame = (props: Props) => {
     const el = document.getElementById(`content-frame-${elementId}`);
     if (el) {
       const computedStyle = getContentFrameStyle(props.frame.meta);
-      el.style.setProperty('--content-frame-color', computedStyle.color);
+      el.style.setProperty(
+        '--content-frame-background-color',
+        computedStyle.backgroundColor
+      );
       el.style.setProperty(
         '--content-frame-border-color',
         computedStyle.borderColor
@@ -177,7 +181,7 @@ const ContentFrame = (props: Props) => {
             <FontAwesomeIcon icon={faPlus} />
           </ControlButton>
           <ControlButton handleClick={props.handleAdd} circle>
-            <FontAwesomeIcon icon={faLaptopMedical} />
+            <FontAwesomeIcon icon={faThLarge} />
           </ControlButton>
           <ControlButton handleClick={() => setIsEditOpen(true)} circle>
             <FontAwesomeIcon icon={faCog} />
