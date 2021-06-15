@@ -13,25 +13,48 @@
   width: 80%;
 }
 
-.elements-site__overlap-section--offset-small {
+.elements-site__overlap-section--offset-position-top.elements-site__overlap-section--offset-small {
   margin-top: -50px;
 }
-.elements-site__overlap-section--offset-medium {
+.elements-site__overlap-section--offset-position-top.elements-site__overlap-section--offset-medium {
   margin-top: -100px;
 }
-.elements-site__overlap-section--offset-large {
+.elements-site__overlap-section--offset-position-top.elements-site__overlap-section--offset-large {
   margin-top: -150px;
 }
 
-.elements-site__overlap-section--background-section-height-small {
+.elements-site__overlap-section--offset-position-bottom.elements-site__overlap-section--offset-small {
+  margin-bottom: -50px;
+}
+.elements-site__overlap-section--offset-position-bottom.elements-site__overlap-section--offset-medium {
+  margin-bottom: -100px;
+}
+.elements-site__overlap-section--offset-position-bottom.elements-site__overlap-section--offset-large {
+  margin-bottom: -150px;
+}
+
+.elements-site__overlap-section--offset-position-top.elements-site__overlap-section--background-section-height-small {
   margin-bottom: -30px;
 }
-.elements-site__overlap-section--background-section-height-medium {
+.elements-site__overlap-section--offset-position-top.elements-site__overlap-section--background-section-height-medium {
   margin-bottom: -60px;
 }
-.elements-site__overlap-section--background-section-height-large {
+.elements-site__overlap-section--offset-position-top.elements-site__overlap-section--background-section-height-large {
   margin-bottom: -90px;
 }
-.elements-site__overlap-section--background-section-height-auto {
+.elements-site__overlap-section--offset-position-top.elements-site__overlap-section--background-section-height-auto {
   margin-bottom: 0px;
+}
+
+.elements-site__overlap-section--offset-position-bottom.elements-site__overlap-section--background-section-height-small {
+  margin-top: -30px;
+}
+.elements-site__overlap-section--offset-position-bottom.elements-site__overlap-section--background-section-height-medium {
+  margin-top: -60px;
+}
+.elements-site__overlap-section--offset-position-bottom.elements-site__overlap-section--background-section-height-large {
+  margin-top: -90px;
+}
+.elements-site__overlap-section--offset-position-bottom.elements-site__overlap-section--background-section-height-auto {
+  margin-top: 0px;
 }

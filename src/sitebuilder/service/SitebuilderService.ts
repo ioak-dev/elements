@@ -3,8 +3,8 @@ import ContentType from '../ContentType';
 import TextType from '../TextType';
 import SectionType from '../SectionType';
 import {
+  getHtmlForOverlapSection,
   getHtmlForSingleSection,
-  getHtmlForSplitContent,
   getHtmlForSplitSection,
 } from './RenderHelperService';
 
@@ -20,8 +20,8 @@ export const toHtml = (sections: any[]) => {
       case SectionType.SPLIT_SECTION:
         res += getHtmlForSplitSection(section);
         break;
-      case SectionType.SPLIT_CONTENT:
-        res += getHtmlForSplitContent(section);
+      case SectionType.OVERLAP_SECTION:
+        res += getHtmlForOverlapSection(section);
         break;
       default:
         break;

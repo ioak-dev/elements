@@ -9,6 +9,8 @@ import {
   ContentFrameType,
 } from '../../ContentFrameType';
 import ControlButton from '../../ui/ControlButton';
+import { getContentFrameData } from '../../service/DataTypeService';
+import MetaDetails from './MetaDetails';
 
 interface Props {
   layout: string;
@@ -18,29 +20,29 @@ interface Props {
   expandToFill: boolean;
   content: ContentFrameGroupType;
   handleChange: any;
+  addFrameGroup: any;
 }
 const ContentFrameGroup = (props: Props) => {
   const [isEditOpen, setIsEditOpen] = useState(false);
 
   const elementId = newId();
 
+  const handleMetaChange = (meta: any) => {
+    const _content = { ...props.content, meta };
+    props.handleChange(_content);
+  };
+
   const handleAdd = (frame: ContentFrameType) => {
-    const _content = { ...props.content, items: [...props.content.items] };
-    const index = _content.items.findIndex((item) => item.id === frame.id);
-    const newFrame: ContentFrameType = {
-      id: newId(),
-      items: [],
-      meta: {
-        borderThickness: 'none',
-        color: 'none',
-        gap: 'small',
-        horizontalPadding: 'small',
-        horizontalPosition: 'left',
-        verticalPadding: 'none',
-        verticalPosition: 'top',
-      },
+    const _content: ContentFrameGroupType = {
+      ...props.content,
+      contentFrame: [...props.content.contentFrame],
     };
-    _content.items.splice(index + 1, 0, newFrame);
+    const index = _content.contentFrame.findIndex(
+      (item) => item.id === frame.id
+    );
+    const newFrame: ContentFrameType = getContentFrameData();
+    _content.contentFrame.splice(index + 1, 0, newFrame);
+    console.log(props.content, frame, _content);
     props.handleChange(_content);
   };
 
@@ -48,41 +50,50 @@ const ContentFrameGroup = (props: Props) => {
     console.log('delete');
   };
   const handleChange = (frame: ContentFrameType) => {
-    const _content = { ...props.content, items: [...props.content.items] };
-    const index = _content.items.findIndex((item) => item.id === frame.id);
+    const _content: ContentFrameGroupType = {
+      ...props.content,
+      contentFrame: [...props.content.contentFrame],
+    };
+    const index = _content.contentFrame.findIndex(
+      (item) => item.id === frame.id
+    );
     if (index >= 0) {
-      _content.items[index] = frame;
+      _content.contentFrame[index] = frame;
       props.handleChange(_content);
     }
   };
 
   return (
-    <div
-      className={getContentFrameGroupClass(
-        props.content.meta,
-        props.horizontalPosition,
-        props.layout,
-        props.gap,
-        props.gridWidth,
-        props.expandToFill
-      )}
-    >
-      {props.content.items.map((frame) => (
-        <div key={frame.id}>
-          <ContentFrame
-            frame={frame}
-            handleAdd={() => handleAdd(frame)}
-            handleChange={handleChange}
-            handleDelete={handleDelete}
-          />
-        </div>
-      ))}
-      {props.content.items.length === 0 && (
-        <ControlButton handleClick={handleAdd} circle>
-          <FontAwesomeIcon icon={faThLarge} />
-        </ControlButton>
-      )}
-    </div>
+    <>
+      <MetaDetails
+        deactivate={() => setIsEditOpen(false)}
+        isActive={isEditOpen}
+        value={props.content.meta}
+        handleChange={handleMetaChange}
+      />
+      <div className={getContentFrameGroupClass(props.content.meta)}>
+        {props.content.contentFrame.map((frame, index) => (
+          <div key={frame.id}>
+            <ContentFrame
+              frame={frame}
+              addFrame={() => handleAdd(frame)}
+              addFrameGroup={props.addFrameGroup}
+              handleChange={handleChange}
+              handleDelete={handleDelete}
+              openFrameGroupSettings={
+                index === 0 ? () => setIsEditOpen(true) : null
+              }
+            />
+          </div>
+        ))}
+        {props.content.contentFrame.length === 0 && (
+          <ControlButton handleClick={handleAdd}>
+            <FontAwesomeIcon icon={faPlus} />
+            Add frame
+          </ControlButton>
+        )}
+      </div>
+    </>
   );
 };
 

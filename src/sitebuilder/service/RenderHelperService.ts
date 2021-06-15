@@ -18,6 +18,8 @@ import {
   getImageContainerImgClass,
   getTextStyle,
   getContentFrameStyle,
+  getContentFrameGroupContainerClass,
+  getOverlapSectionClass,
 } from './EditorHelperService';
 import {
   ContentFrameItemDataType,
@@ -25,90 +27,65 @@ import {
   ContentFrameMetaType,
   ContentFrameGroupType,
   ContentFrameType,
+  ContentFrameGroupContainerType,
 } from '../ContentFrameType';
+import { SingleSectionEditorType } from '../editor/SingleSectionEditor/SingleSectionEditorType';
+import { SplitSectionEditorType } from '../editor/SplitSectionEditor/SplitSectionEditorType';
+import { OverlapSectionEditorType } from '../editor/OverlapSectionEditor/OverlapSectionEditorType';
 
 const tinycolor = require('tinycolor2');
 
-export const getHtmlForSplitContent = (section: any) => {
-  let leftContent = `<div
-          class="${getContentContainerClass(
-            section.height,
-            section.left.verticalPosition
-          )}"
-        >`;
-  leftContent += getContentFrameGroup(
-    section.left.layout,
-    section.left.horizontalPosition,
-    section.left.gap,
-    section.left.gridWidth,
-    section.left.expandToFill,
-    section.left.content
+export const getHtmlForOverlapSection = (section: OverlapSectionEditorType) => {
+  let subSection = `<div class="${getOverlapSectionClass(
+    section.mainSection.meta.height,
+    section.meta.width,
+    section.meta.offset,
+    section.meta.offsetPosition
+  )}">`;
+  subSection += getHtmlForSingleSection(section.subSection);
+  subSection += '</div>';
+  const result = getHtmlForSingleSection(
+    section.mainSection,
+    subSection,
+    section.meta.offsetPosition === 'bottom'
   );
-  leftContent += '</div>';
-  let rightContent = `<div
-          class="${getContentContainerClass(
-            section.height,
-            section.right.verticalPosition
-          )}"
-        >`;
-  rightContent += getContentFrameGroup(
-    section.right.layout,
-    section.right.horizontalPosition,
-    section.right.gap,
-    section.right.gridWidth,
-    section.right.expandToFill,
-    section.right.content
-  );
-  rightContent += '</div>';
-  let content = '<div class="elements-site-viewbox">';
-  content += `<div class="${getSplitSectionClass(section.proportion)}">`;
-  content += leftContent;
-  content += rightContent;
-  content += '</div>';
-  content += '</div>';
-  const result = getBackgroundView(section.background, content, true);
   return result;
 };
 
-export const getHtmlForSplitSection = (section: any) => {
+export const getHtmlForSplitSection = (section: SplitSectionEditorType) => {
   let leftContent = `<div
           class="${getContentContainerClass(
-            section.height,
-            section.left.verticalPosition,
+            section.meta.height,
+            section.left.meta.verticalPosition,
             'left'
           )}"
         >`;
-  leftContent += getContentFrameGroup(
-    section.left.layout,
-    section.left.horizontalPosition,
-    section.left.gap,
-    section.left.gridWidth,
-    section.left.expandToFill,
-    section.left.content
+
+  leftContent += getContentFrameGroupContainer(
+    section.left.contentFrameGroupContainer,
+    section.left.meta.layout,
+    section.left.meta.gap
   );
   leftContent += '</div>';
   const left = getBackgroundView(section.left.background, leftContent, true);
 
   let rightContent = `<div
           class="${getContentContainerClass(
-            section.height,
-            section.right.verticalPosition,
+            section.meta.height,
+            section.right.meta.verticalPosition,
             'right'
           )}"
         >`;
 
-  rightContent += getContentFrameGroup(
-    section.right.layout,
-    section.right.horizontalPosition,
-    section.right.gap,
-    section.right.gridWidth,
-    section.right.expandToFill,
-    section.right.content
+  rightContent += getContentFrameGroupContainer(
+    section.right.contentFrameGroupContainer,
+    section.right.meta.layout,
+    section.right.meta.gap
   );
   rightContent += '</div>';
   const right = getBackgroundView(section.right.background, rightContent, true);
 
-  let result = `<div class="${getSplitSectionClass(section.proportion)}">`;
+  let result = `<div class="${getSplitSectionClass(section.meta.proportion)}">`;
   result += '<div>';
   result += left;
   result += '</div>';
@@ -119,45 +96,62 @@ export const getHtmlForSplitSection = (section: any) => {
   return result;
 };
 
-export const getHtmlForSingleSection = (section: any) => {
-  let content = `<div
+export const getHtmlForSingleSection = (
+  section: SingleSectionEditorType,
+  innerContent?: string,
+  childrenAtBottom?: boolean
+) => {
+  let content = '';
+  if (!childrenAtBottom && innerContent) {
+    content += innerContent;
+  }
+  content += `<div
           class="${`elements-site-viewbox ${getContentContainerClass(
-            section.height,
-            section.position
+            section.meta.height,
+            section.meta.verticalPosition
           )}`}"
         >`;
-  content += getContentFrameGroup(
-    section.layout,
-    section.horizontalPosition,
-    section.gap,
-    section.gridWidth,
-    section.expandToFill,
-    section.content
+  content += getContentFrameGroupContainer(
+    section.data.contentFrameGroupContainer,
+    section.meta.layout,
+    section.meta.gap
   );
   content += '</div>';
-  const result = getBackgroundView(section.background, content);
+  if (childrenAtBottom && innerContent) {
+    content += innerContent;
+  }
+  const result = getBackgroundView(section.data.background, content);
   return result;
 };
 
-const getContentFrameGroup = (
-  layout: string,
-  horizontalPosition: 'left' | 'center' | 'right',
-  gap: 'none' | 'small' | 'medium' | 'large',
-  gridWidth: 'auto' | 'small' | 'medium' | 'large',
-  expandToFill: boolean,
-  content: ContentFrameGroupType
+const getContentFrameGroupContainer = (
+  content: ContentFrameGroupContainerType,
+  layout: 'single-column' | 'two-column',
+  gap: 'none' | 'small' | 'medium' | 'large'
 ) => {
   let res = '';
-  res += `<div class="${getContentFrameGroupClass(
+  res += `<div class="${getContentFrameGroupContainerClass(
     content.meta,
-    horizontalPosition,
     layout,
-    gap,
-    gridWidth,
-    expandToFill
+    gap
   )}">`;
   let contentDiv = '';
-  content.items.forEach(
+  content.contentFrameGroup.forEach(
+    (frameGroup) =>
+      (contentDiv += `<div>
+        ${getContentFrameGroup(frameGroup)}
+      </div>`)
+  );
+  res += contentDiv;
+  res += '</div>';
+  return res;
+};
+
+const getContentFrameGroup = (content: ContentFrameGroupType) => {
+  let res = '';
+  res += `<div class="${getContentFrameGroupClass(content.meta)}">`;
+  let contentDiv = '';
+  content.contentFrame.forEach(
     (frame) =>
       (contentDiv += `<div>
         ${getContentFrame(frame)}
@@ -174,7 +168,7 @@ const getContentFrame = (frame: ContentFrameType) => {
   style += `--content-frame-background-color: ${computedStyle.backgroundColor};`;
   let res = '';
   res += `<div class="${getContentFrameClass(frame.meta)}" style="${style}">`;
-  res += getContentBuilder(frame.items, frame.meta);
+  res += getContentBuilder(frame.contentFrameItem, frame.meta);
   res += '</div>';
   return res;
 };

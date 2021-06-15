@@ -15,7 +15,6 @@ import BlockEditor from './block/BlockEditor/index';
 
 import SingleSectionEditor from './SiteBuilder/editor/SingleSectionEditor';
 import SplitSectionEditor from './SiteBuilder/editor/SplitSectionEditor';
-import SplitContentEditor from './SiteBuilder/editor/SplitContentEditor';
 import OverlapSectionEditor from './SiteBuilder/editor/OverlapSectionEditor';
 
 import SiteBuilder from './SiteBuilder/index';
@@ -59,7 +58,6 @@ export {
   SiteBuilder,
   SingleSectionEditor,
   SplitSectionEditor,
-  SplitContentEditor,
   OverlapSectionEditor,
   SitebuilderService,
   ContentFrameType,

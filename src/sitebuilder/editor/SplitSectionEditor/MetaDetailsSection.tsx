@@ -21,7 +21,6 @@ const MetaDetailsSection = (props: Props) => {
 
   return (
     <>
-      {' '}
       <OakRadioGroup
         name="layout"
         radioGroupName={`layout-${groupId}`}
@@ -30,55 +29,18 @@ const MetaDetailsSection = (props: Props) => {
         handleChange={handleChange}
         gutterBottom
       >
-        <OakRadio name="responsive" radioGroupName={`layout-${groupId}`}>
-          Responsive
+        <OakRadio name="single-column" radioGroupName={`layout-${groupId}`}>
+          Single column
         </OakRadio>
-        <OakRadio name="middle" radioGroupName={`layout-${groupId}`}>
-          Middle
-        </OakRadio>
-        <OakRadio name="bottom" radioGroupName={`layout-${groupId}`}>
-          Bottom
+        <OakRadio name="two-column" radioGroupName={`layout-${groupId}`}>
+          Two column
         </OakRadio>
       </OakRadioGroup>
-      <OakRadioGroup
-        name="gridWidth"
-        radioGroupName={`gridWidth-${groupId}`}
-        value={props.value.gridWidth}
-        label="Grid width"
-        handleChange={handleChange}
-        gutterBottom
-      >
-        <OakRadio name="auto" radioGroupName={`gridWidth-${groupId}`}>
-          Auto (based on content)
-        </OakRadio>
-        <OakRadio name="xsmall" radioGroupName={`gridWidth-${groupId}`}>
-          Extra small
-        </OakRadio>
-        <OakRadio name="small" radioGroupName={`gridWidth-${groupId}`}>
-          Small
-        </OakRadio>
-        <OakRadio name="medium" radioGroupName={`gridWidth-${groupId}`}>
-          Medium
-        </OakRadio>
-        <OakRadio name="large" radioGroupName={`gridWidth-${groupId}`}>
-          Large
-        </OakRadio>
-      </OakRadioGroup>
-      {props.value.gridWidth !== 'auto' && (
-        <OakCheckbox
-          name="expandToFill"
-          value={props.value.expandToFill}
-          handleChange={handleChange}
-          gutterBottom
-        >
-          Expand grid width to fill space
-        </OakCheckbox>
-      )}
       <OakRadioGroup
         name="gap"
         radioGroupName={`gap-${groupId}`}
         value={props.value.gap}
-        label="gap"
+        label="Gap"
         handleChange={handleChange}
         gutterBottom
       >
@@ -111,27 +73,6 @@ const MetaDetailsSection = (props: Props) => {
         </OakRadio>
         <OakRadio name="bottom" radioGroupName={`verticalPosition-${groupId}`}>
           Bottom
-        </OakRadio>
-      </OakRadioGroup>
-      <OakRadioGroup
-        name="horizontalPosition"
-        radioGroupName={`horizontalPosition-${groupId}`}
-        value={props.value.horizontalPosition}
-        label="Horizontal position"
-        handleChange={handleChange}
-        gutterBottom
-      >
-        <OakRadio name="left" radioGroupName={`horizontalPosition-${groupId}`}>
-          Left
-        </OakRadio>
-        <OakRadio
-          name="center"
-          radioGroupName={`horizontalPosition-${groupId}`}
-        >
-          Center
-        </OakRadio>
-        <OakRadio name="right" radioGroupName={`horizontalPosition-${groupId}`}>
-          Right
         </OakRadio>
       </OakRadioGroup>
     </>

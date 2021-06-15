@@ -1,6 +1,7 @@
 import {
   ContentFrameMetaType,
   ContentFrameGroupMetaType,
+  ContentFrameGroupContainerMetaType,
 } from '../ContentFrameType';
 
 const tinycolor = require('tinycolor2');
@@ -185,21 +186,28 @@ export const getContentContainerClass = (
   return res;
 };
 
-export const getContentFrameGroupClass = (
-  meta: ContentFrameGroupMetaType,
-  horizontalPosition: 'left' | 'center' | 'right',
-  layout: string,
-  gap: 'none' | 'small' | 'medium' | 'large',
-  gridWidth: 'auto' | 'small' | 'medium' | 'large',
-  expandToFill: boolean
+export const getContentFrameGroupContainerClass = (
+  meta: ContentFrameGroupContainerMetaType,
+  layout: 'single-column' | 'two-column',
+  gap: 'none' | 'small' | 'medium' | 'large'
 ) => {
-  const base = 'elements-site__content-frame-group';
+  const base = 'elements-site__content-frame-group-container';
   let res = base;
-  res += ` ${base}--align-x-${horizontalPosition}`;
   res += ` ${base}--gap-${gap}`;
   res += ` ${base}--layout-${layout}`;
-  res += ` ${base}--grid-width-${gridWidth}`;
-  if (expandToFill) {
+  return res;
+};
+
+export const getContentFrameGroupClass = (meta: ContentFrameGroupMetaType) => {
+  const base = 'elements-site__content-frame-group';
+  let res = base;
+  res += ` ${base}--padding-x-${meta.horizontalPadding}`;
+  res += ` ${base}--padding-y-${meta.verticalPadding}`;
+  res += ` ${base}--align-x-${meta.horizontalPosition}`;
+  res += ` ${base}--gap-${meta.gap}`;
+  res += ` ${base}--layout-${meta.layout}`;
+  res += ` ${base}--grid-width-${meta.gridWidth}`;
+  if (meta.expandToFill) {
     res += ` ${base}--expand-to-fill`;
   } else {
     res += ` ${base}--do-not-expand-to-fill`;
@@ -270,13 +278,15 @@ export const getImageContainerImgClass = (meta: any) => {
 export const getOverlapSectionClass = (
   backgroundSectionHeight: 'auto' | 'small' | 'medium' | 'large' | 'full',
   width: 'small' | 'medium' | 'large',
-  offset: 'small' | 'medium' | 'large'
+  offset: 'small' | 'medium' | 'large',
+  offsetPosition: 'top' | 'bottom'
 ) => {
   const base = 'elements-site__overlap-section';
   let res = base;
   res += ` ${base}--background-section-height-${backgroundSectionHeight}`;
   res += ` ${base}--width-${width}`;
   res += ` ${base}--offset-${offset}`;
+  res += ` ${base}--offset-position-${offsetPosition}`;
   return res;
 };
 

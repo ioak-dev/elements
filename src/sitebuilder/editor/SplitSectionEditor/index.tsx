@@ -6,24 +6,26 @@ import {
   getSplitSectionClass,
 } from '../../service/EditorHelperService';
 import ContentFrameGroup from '../../components/ContentFrameGroup';
+import { SplitSectionEditorType } from './SplitSectionEditorType';
+import ContentFrameGroupContainer from '../../components/ContentFrameGroupContainer';
 
 interface Props {
-  value: any;
+  value: SplitSectionEditorType;
   handleChange: any;
   placeholder?: string;
   currentEditorId?: string;
   stopEditing?: any;
 }
 const SplitSectionEditor = (props: Props) => {
-  const handleContentLeftChange = (content: any) => {
-    const _value = { ...props.value };
-    _value.left.content = content;
+  const handleContentLeftChange = (contentFrameGroupContainer: any) => {
+    const _value: SplitSectionEditorType = { ...props.value };
+    _value.left.contentFrameGroupContainer = contentFrameGroupContainer;
     props.handleChange(_value);
   };
 
-  const handleContentRightChange = (content: any) => {
+  const handleContentRightChange = (contentFrameGroupContainer: any) => {
     const _value = { ...props.value };
-    _value.right.content = content;
+    _value.right.contentFrameGroupContainer = contentFrameGroupContainer;
     props.handleChange(_value);
   };
 
@@ -38,10 +40,13 @@ const SplitSectionEditor = (props: Props) => {
     props.handleChange(value);
   };
 
+  const handleMetaChange = (meta: any) => {
+    props.handleChange({ ...props.value, meta });
+  };
+
   const handleRightMetaChange = (value: any) => {
     const _value = { ...props.value };
     _value.right = value;
-    _value.left = { ..._value.left, height: value.height };
     props.handleChange(_value);
   };
 
@@ -59,13 +64,13 @@ const SplitSectionEditor = (props: Props) => {
 
   const handleResizeUp = () => {
     const _value = { ...props.value };
-    _value.proportion -= 1;
+    _value.meta.proportion -= 1;
     props.handleChange(_value);
   };
 
   const handleResizeDown = () => {
     const _value = { ...props.value };
-    _value.proportion += 1;
+    _value.meta.proportion += 1;
     props.handleChange(_value);
   };
 
@@ -78,31 +83,29 @@ const SplitSectionEditor = (props: Props) => {
         deactivate={props.stopEditing}
       />
 
-      <div className={getSplitSectionClass(props.value.proportion)}>
+      <div className={getSplitSectionClass(props.value.meta.proportion)}>
         <div>
           <BackgroundView
             value={props.value.left.background}
             handleChange={handleChangeLeftBackground}
             handleResizeUp={
-              props.value.proportion > -3 ? () => handleResizeUp() : null
+              props.value.meta.proportion > -3 ? () => handleResizeUp() : null
             }
             resizeControlPosition="right"
             split
           >
             <div
               className={getContentContainerClass(
-                props.value.height,
-                props.value.left.verticalPosition,
+                props.value.meta.height,
+                props.value.left.meta.verticalPosition,
                 'left'
               )}
             >
-              <ContentFrameGroup
-                horizontalPosition={props.value.left.horizontalPosition}
-                layout={props.value.left.layout}
-                gap={props.value.left.gap}
-                gridWidth={props.value.left.gridWidth}
-                expandToFill={props.value.left.expandToFill}
-                content={props.value.left.content}
+              <ContentFrameGroupContainer
+                gap={props.value.left.meta.gap}
+                layout={props.value.left.meta.layout}
+                verticalPosition={props.value.left.meta.verticalPosition}
+                content={props.value.left.contentFrameGroupContainer}
                 handleChange={handleContentLeftChange}
               />
             </div>
@@ -113,25 +116,23 @@ const SplitSectionEditor = (props: Props) => {
             value={props.value.right.background}
             handleChange={handleChangeRightBackground}
             handleResizeDown={
-              props.value.proportion < 3 ? () => handleResizeDown() : null
+              props.value.meta.proportion < 3 ? () => handleResizeDown() : null
             }
             resizeControlPosition="left"
             split
           >
             <div
               className={getContentContainerClass(
-                props.value.height,
-                props.value.right.verticalPosition,
+                props.value.meta.height,
+                props.value.right.meta.verticalPosition,
                 'right'
               )}
             >
-              <ContentFrameGroup
-                horizontalPosition={props.value.right.horizontalPosition}
-                layout={props.value.right.layout}
-                gap={props.value.right.gap}
-                gridWidth={props.value.right.gridWidth}
-                expandToFill={props.value.right.expandToFill}
-                content={props.value.right.content}
+              <ContentFrameGroupContainer
+                gap={props.value.right.meta.gap}
+                layout={props.value.right.meta.layout}
+                verticalPosition={props.value.right.meta.verticalPosition}
+                content={props.value.right.contentFrameGroupContainer}
                 handleChange={handleContentRightChange}
               />
             </div>

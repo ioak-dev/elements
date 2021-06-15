@@ -33,9 +33,6 @@ const NewSectionEditor = (props: Props) => {
             <OakRadio radioGroupName={groupId} name="SPLIT_SECTION">
               Split Section
             </OakRadio>
-            <OakRadio radioGroupName={groupId} name="SPLIT_CONTENT">
-              Split Content
-            </OakRadio>
             <OakRadio radioGroupName={groupId} name="OVERLAP_SECTION">
               Overlap Section
             </OakRadio>

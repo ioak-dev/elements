@@ -8,12 +8,18 @@ import { newId } from '../utils/BasicUtil';
 import NavigationActionType from './NavigationActionType';
 import SingleSectionEditor from './editor/SingleSectionEditor';
 import OverlapSectionEditor from './editor/OverlapSectionEditor';
-import SplitContentEditor from './editor/SplitContentEditor';
 import SplitSectionEditor from './editor/SplitSectionEditor';
 import SectionControl from './components/SectionControl';
 import NewSectionEditor from './editor/NewSectionEditor';
 import { ScrollToSectionCommand } from './event/ScrollToSectionCommand';
 import SectionButton from './ui/SectionButton';
+import { SingleSectionEditorType } from './editor/SingleSectionEditor/SingleSectionEditorType';
+import { ContentFrameItemDataType } from './ContentFrameType';
+import {
+  getOverlapSectionEditorData,
+  getSingleSectionEditorData,
+  getSplitSectionEditorData,
+} from './service/DataTypeService';
 // import { ScrollToBlockCommand } from './types/ScrollToBlockCommand';
 
 interface Props {
@@ -97,89 +103,11 @@ const SiteBuilder = (props: Props) => {
   const getNewSection = (sectionType?: SectionType) => {
     switch (sectionType) {
       case SectionType.SINGLE_SECTION:
-        return {
-          id: newId(),
-          type: sectionType,
-          height: 'medium',
-          content: {
-            meta: {},
-            items: [],
-          },
-          background: {
-            source: 'UNSPLASH',
-            meta: {},
-            data: {},
-          },
-        };
+        return getSingleSectionEditorData();
       case SectionType.SPLIT_SECTION:
-        return {
-          id: newId(),
-          type: sectionType,
-          height: 'medium',
-          left: {
-            verticalPosition: 'middle',
-            layout: '',
-            gap: 'small',
-            content: {
-              meta: {},
-              items: [],
-            },
-            background: {
-              source: 'UNSPLASH',
-              meta: {},
-              data: {},
-            },
-          },
-          right: {
-            verticalPosition: 'middle',
-            layout: '',
-            gap: 'small',
-            content: {
-              meta: {},
-              items: [],
-            },
-            background: {
-              source: 'UNSPLASH',
-              meta: {},
-              data: {},
-            },
-          },
-        };
-      case SectionType.SPLIT_CONTENT:
-        return {
-          id: newId(),
-          type: sectionType,
-          height: 'medium',
-          background: {
-            source: 'UNSPLASH',
-            meta: {},
-            data: {},
-          },
-          left: {
-            verticalPosition: 'middle',
-            layout: '',
-            gap: 'small',
-            content: {
-              meta: {},
-              items: [],
-            },
-          },
-          right: {
-            verticalPosition: 'middle',
-            layout: '',
-            gap: 'small',
-            content: {
-              meta: {},
-              items: [],
-            },
-          },
-        };
+        return getSplitSectionEditorData();
       case SectionType.OVERLAP_SECTION:
-        return {
-          id: newId(),
-          type: sectionType,
-          height: 'medium',
-        };
+        return getOverlapSectionEditorData();
       default:
         return {
           id: newId(),
@@ -240,14 +168,6 @@ const SiteBuilder = (props: Props) => {
           )}
           {section.type === SectionType.SPLIT_SECTION && (
             <SplitSectionEditor
-              value={section}
-              handleChange={(value: any) => handleChange(section, value)}
-              currentEditorId={currentEditorId}
-              stopEditing={() => setCurrentEditorId('')}
-            />
-          )}
-          {section.type === SectionType.SPLIT_CONTENT && (
-            <SplitContentEditor
               value={section}
               handleChange={(value: any) => handleChange(section, value)}
               currentEditorId={currentEditorId}

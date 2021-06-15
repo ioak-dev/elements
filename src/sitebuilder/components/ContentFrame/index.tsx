@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faCog,
-  faLaptopMedical,
+  faCogs,
   faPlus,
   faThLarge,
 } from '@fortawesome/free-solid-svg-icons';
@@ -10,8 +10,6 @@ import { newId } from '../../../utils/BasicUtil';
 import './style.scss';
 import MetaDetails from './MetaDetails';
 import ContentBuilder from '../ContentBuilder';
-import ContentType from '../../ContentType';
-import BackgroundView from '../BackgroundView';
 import {
   getContentFrameClass,
   getContentFrameStyle,
@@ -27,8 +25,10 @@ import ControlButton from '../../ui/ControlButton';
 interface Props {
   frame: ContentFrameType;
   handleChange: any;
-  handleAdd: any;
+  addFrame: any;
+  addFrameGroup: any;
   handleDelete: any;
+  openFrameGroupSettings?: any;
 }
 const ContentFrame = (props: Props) => {
   const [isEditOpen, setIsEditOpen] = useState(false);
@@ -36,7 +36,7 @@ const ContentFrame = (props: Props) => {
 
   const handleContentChange = (content: any) => {
     const _frame = { ...props.frame };
-    _frame.items = content;
+    _frame.contentFrameItem = content;
     props.handleChange(_frame);
   };
 
@@ -62,12 +62,22 @@ const ContentFrame = (props: Props) => {
 
   const elementId = newId();
 
+  const addFrameGroup = () => {
+    props.addFrameGroup();
+    setIsAddOpen(false);
+  };
+
+  const addFrame = () => {
+    props.addFrame();
+    setIsAddOpen(false);
+  };
+
   const addNew = (type: ContentFrameItemDataType) => {
     const newBlock = getNewBlock(type);
     if (newBlock) {
       const _value: ContentFrameType = {
         ...props.frame,
-        items: [...props.frame.items, newBlock],
+        contentFrameItem: [...props.frame.contentFrameItem, newBlock],
       };
       props.handleChange(_value);
     }
@@ -150,13 +160,19 @@ const ContentFrame = (props: Props) => {
               handleChange={() => addNew(ContentFrameItemDataType.LINKS)}
               name={ContentFrameItemDataType.LINKS}
             >
-              Action
+              Links
             </OakRadio>
             <OakRadio
               handleChange={() => addNew(ContentFrameItemDataType.IMAGE)}
               name={ContentFrameItemDataType.IMAGE}
             >
               Image
+            </OakRadio>
+            <OakRadio handleChange={addFrameGroup} name="frameGroup">
+              Content frame group
+            </OakRadio>
+            <OakRadio handleChange={addFrame} name="frame">
+              Content frame
             </OakRadio>
           </div>
         </div>
@@ -169,23 +185,27 @@ const ContentFrame = (props: Props) => {
       />
       <div
         id={`content-frame-${elementId}`}
-        className={`content-frame ${getContentFrameClass(props.frame.meta)}`}
+        className={`content-frame-editor ${getContentFrameClass(
+          props.frame.meta
+        )}`}
       >
         <ContentBuilder
           handleChange={handleContentChange}
-          items={props.frame.items}
+          items={props.frame.contentFrameItem}
           meta={props.frame.meta}
         />
         <div className="content-frame__action">
           <ControlButton handleClick={() => setIsAddOpen(true)} circle>
             <FontAwesomeIcon icon={faPlus} />
           </ControlButton>
-          <ControlButton handleClick={props.handleAdd} circle>
-            <FontAwesomeIcon icon={faThLarge} />
-          </ControlButton>
           <ControlButton handleClick={() => setIsEditOpen(true)} circle>
             <FontAwesomeIcon icon={faCog} />
           </ControlButton>
+          {props.openFrameGroupSettings && (
+            <ControlButton handleClick={props.openFrameGroupSettings} circle>
+              <FontAwesomeIcon icon={faThLarge} />
+            </ControlButton>
+          )}
         </div>
       </div>
     </>

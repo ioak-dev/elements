@@ -1,9 +1,26 @@
+export interface ContentFrameGroupContainerType {
+  meta: ContentFrameGroupContainerMetaType;
+  contentFrameGroup: ContentFrameGroupType[];
+}
+
 export interface ContentFrameGroupType {
+  id: string;
   meta: ContentFrameGroupMetaType;
-  items: ContentFrameType[];
+  contentFrame: ContentFrameType[];
 }
 
 export interface ContentFrameGroupMetaType {
+  verticalPosition: 'top' | 'middle' | 'bottom';
+  horizontalPosition: 'left' | 'center' | 'right';
+  verticalPadding: 'none' | 'small' | 'medium' | 'large';
+  horizontalPadding: 'none' | 'small' | 'medium' | 'large';
+  layout: string;
+  gap: 'none' | 'small' | 'medium' | 'large';
+  gridWidth: 'auto' | 'small' | 'medium' | 'large';
+  expandToFill: boolean;
+}
+
+export interface ContentFrameGroupContainerMetaType {
   verticalPosition: 'top' | 'middle' | 'bottom';
   horizontalPosition: 'left' | 'center' | 'right';
 }
@@ -11,7 +28,7 @@ export interface ContentFrameGroupMetaType {
 export interface ContentFrameType {
   id: string;
   meta: ContentFrameMetaType;
-  items: ContentFrameItemType[];
+  contentFrameItem: ContentFrameItemType[];
 }
 
 export interface ContentFrameMetaType {
