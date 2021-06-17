@@ -26,6 +26,13 @@ export interface SplitSectionEditorMetaType {
 export interface SplitSectionEditorContentMetaType {
   verticalPosition: 'top' | 'middle' | 'bottom';
   layout: 'single-column' | 'two-column';
+  layoutProportion:
+    | 'auto-left'
+    | 'auto-right'
+    | 'equal'
+    | 'wide-left'
+    | 'wide-right';
+  layoutResponsive: boolean;
   gap: 'none' | 'small' | 'medium' | 'large';
 }
 

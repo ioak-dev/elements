@@ -89,6 +89,8 @@ const SingleSectionEditor = (props: Props) => {
           <ContentFrameGroupContainer
             gap={props.value.meta.gap}
             layout={props.value.meta.layout}
+            layoutProportion={props.value.meta.layoutProportion}
+            layoutResponsive={props.value.meta.layoutResponsive}
             verticalPosition={props.value.meta.verticalPosition}
             content={props.value.data.contentFrameGroupContainer}
             handleChange={handleContentChange}

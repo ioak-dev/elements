@@ -16,6 +16,13 @@ import { getContentFrameGroupData } from '../../service/DataTypeService';
 interface Props {
   verticalPosition: 'top' | 'middle' | 'bottom';
   layout: 'single-column' | 'two-column';
+  layoutProportion:
+    | 'auto-left'
+    | 'auto-right'
+    | 'equal'
+    | 'wide-left'
+    | 'wide-right';
+  layoutResponsive: boolean;
   gap: 'none' | 'small' | 'medium' | 'large';
   content: ContentFrameGroupContainerType;
   handleChange: any;
@@ -65,6 +72,8 @@ const ContentFrameGroupContainer = (props: Props) => {
       className={getContentFrameGroupContainerClass(
         props.content.meta,
         props.layout,
+        props.layoutProportion,
+        props.layoutResponsive,
         props.gap
       )}
     >

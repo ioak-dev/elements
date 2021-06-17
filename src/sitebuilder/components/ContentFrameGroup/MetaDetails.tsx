@@ -57,6 +57,57 @@ const MetaDetails = (props: Props) => {
               Four column
             </OakRadio>
           </OakRadioGroup>
+          {props.value.layout !== 'responsive' && (
+            <OakCheckbox
+              name="layoutResponsive"
+              value={props.value.layoutResponsive}
+              handleChange={handleChange}
+              gutterBottom
+            >
+              Mobile responsive grid
+            </OakCheckbox>
+          )}
+          {props.value.layout === 'two-column' && (
+            <OakRadioGroup
+              name="layoutProportion"
+              radioGroupName={`layoutProportion-${groupId}`}
+              value={props.value.layoutProportion}
+              label="Proportion of two sides"
+              handleChange={handleChange}
+              gutterBottom
+            >
+              <OakRadio
+                name="auto-left"
+                radioGroupName={`layoutProportion-${groupId}`}
+              >
+                Auto left
+              </OakRadio>
+              <OakRadio
+                name="auto-right"
+                radioGroupName={`layoutProportion-${groupId}`}
+              >
+                Auto right
+              </OakRadio>
+              <OakRadio
+                name="equal"
+                radioGroupName={`layoutProportion-${groupId}`}
+              >
+                1:1
+              </OakRadio>
+              <OakRadio
+                name="wide-left"
+                radioGroupName={`layoutProportion-${groupId}`}
+              >
+                2:1
+              </OakRadio>
+              <OakRadio
+                name="wide-right"
+                radioGroupName={`layoutProportion-${groupId}`}
+              >
+                1:2
+              </OakRadio>
+            </OakRadioGroup>
+          )}
           {props.value.layout === 'responsive' && (
             <OakRadioGroup
               name="gridWidth"

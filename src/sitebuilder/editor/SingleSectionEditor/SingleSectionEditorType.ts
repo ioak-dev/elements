@@ -18,6 +18,13 @@ export interface SingleSectionEditorMetaType {
   height: 'auto' | 'small' | 'medium' | 'large' | 'full';
   verticalPosition: 'top' | 'middle' | 'bottom';
   layout: 'single-column' | 'two-column';
+  layoutProportion:
+    | 'auto-left'
+    | 'auto-right'
+    | 'equal'
+    | 'wide-left'
+    | 'wide-right';
+  layoutResponsive: boolean;
   gap: 'none' | 'small' | 'medium' | 'large';
 }
 

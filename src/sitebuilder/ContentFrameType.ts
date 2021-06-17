@@ -15,6 +15,13 @@ export interface ContentFrameGroupMetaType {
   verticalPadding: 'none' | 'small' | 'medium' | 'large';
   horizontalPadding: 'none' | 'small' | 'medium' | 'large';
   layout: string;
+  layoutProportion:
+    | 'auto-left'
+    | 'auto-right'
+    | 'equal'
+    | 'wide-left'
+    | 'wide-right';
+  layoutResponsive: boolean;
   gap: 'none' | 'small' | 'medium' | 'large';
   gridWidth: 'auto' | 'small' | 'medium' | 'large';
   expandToFill: boolean;

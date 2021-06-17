@@ -64,6 +64,8 @@ export const getHtmlForSplitSection = (section: SplitSectionEditorType) => {
   leftContent += getContentFrameGroupContainer(
     section.left.contentFrameGroupContainer,
     section.left.meta.layout,
+    section.left.meta.layoutProportion,
+    section.left.meta.layoutResponsive,
     section.left.meta.gap
   );
   leftContent += '</div>';
@@ -80,6 +82,8 @@ export const getHtmlForSplitSection = (section: SplitSectionEditorType) => {
   rightContent += getContentFrameGroupContainer(
     section.right.contentFrameGroupContainer,
     section.right.meta.layout,
+    section.right.meta.layoutProportion,
+    section.right.meta.layoutResponsive,
     section.right.meta.gap
   );
   rightContent += '</div>';
@@ -114,6 +118,8 @@ export const getHtmlForSingleSection = (
   content += getContentFrameGroupContainer(
     section.data.contentFrameGroupContainer,
     section.meta.layout,
+    section.meta.layoutProportion,
+    section.meta.layoutResponsive,
     section.meta.gap
   );
   content += '</div>';
@@ -127,12 +133,21 @@ export const getHtmlForSingleSection = (
 const getContentFrameGroupContainer = (
   content: ContentFrameGroupContainerType,
   layout: 'single-column' | 'two-column',
+  layoutProportion:
+    | 'auto-left'
+    | 'auto-right'
+    | 'equal'
+    | 'wide-left'
+    | 'wide-right',
+  layoutResponsive: boolean,
   gap: 'none' | 'small' | 'medium' | 'large'
 ) => {
   let res = '';
   res += `<div class="${getContentFrameGroupContainerClass(
     content.meta,
     layout,
+    layoutProportion,
+    layoutResponsive,
     gap
   )}">`;
   let contentDiv = '';

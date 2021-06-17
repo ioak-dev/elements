@@ -189,12 +189,21 @@ export const getContentContainerClass = (
 export const getContentFrameGroupContainerClass = (
   meta: ContentFrameGroupContainerMetaType,
   layout: 'single-column' | 'two-column',
+  layoutProportion:
+    | 'auto-left'
+    | 'auto-right'
+    | 'equal'
+    | 'wide-left'
+    | 'wide-right',
+  layoutResponsive: boolean,
   gap: 'none' | 'small' | 'medium' | 'large'
 ) => {
   const base = 'elements-site__content-frame-group-container';
   let res = base;
   res += ` ${base}--gap-${gap}`;
   res += ` ${base}--layout-${layout}`;
+  res += ` ${base}--layout-proportion-${layoutProportion}`;
+  res += ` ${base}--layout-responsive-${layoutResponsive ? 'yes' : 'no'}`;
   return res;
 };
 
@@ -206,6 +215,8 @@ export const getContentFrameGroupClass = (meta: ContentFrameGroupMetaType) => {
   res += ` ${base}--align-x-${meta.horizontalPosition}`;
   res += ` ${base}--gap-${meta.gap}`;
   res += ` ${base}--layout-${meta.layout}`;
+  res += ` ${base}--layout-proportion-${meta.layoutProportion}`;
+  res += ` ${base}--layout-responsive-${meta.layoutResponsive ? 'yes' : 'no'}`;
   res += ` ${base}--grid-width-${meta.gridWidth}`;
   if (meta.expandToFill) {
     res += ` ${base}--expand-to-fill`;

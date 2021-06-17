@@ -104,6 +104,8 @@ const SplitSectionEditor = (props: Props) => {
               <ContentFrameGroupContainer
                 gap={props.value.left.meta.gap}
                 layout={props.value.left.meta.layout}
+                layoutProportion={props.value.left.meta.layoutProportion}
+                layoutResponsive={props.value.left.meta.layoutResponsive}
                 verticalPosition={props.value.left.meta.verticalPosition}
                 content={props.value.left.contentFrameGroupContainer}
                 handleChange={handleContentLeftChange}
@@ -131,6 +133,8 @@ const SplitSectionEditor = (props: Props) => {
               <ContentFrameGroupContainer
                 gap={props.value.right.meta.gap}
                 layout={props.value.right.meta.layout}
+                layoutProportion={props.value.left.meta.layoutProportion}
+                layoutResponsive={props.value.left.meta.layoutResponsive}
                 verticalPosition={props.value.right.meta.verticalPosition}
                 content={props.value.right.contentFrameGroupContainer}
                 handleChange={handleContentRightChange}
