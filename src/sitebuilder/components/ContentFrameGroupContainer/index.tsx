@@ -49,11 +49,18 @@ const ContentFrameGroupContainer = (props: Props) => {
     props.handleChange(_content);
   };
 
-  const handleDelete = () => {
-    console.log('delete');
+  const handleDelete = (id: string) => {
+    const _content: ContentFrameGroupContainerType = {
+      ...props.content,
+      contentFrameGroup: [...props.content.contentFrameGroup],
+    };
+    _content.contentFrameGroup = _content.contentFrameGroup.filter(
+      (item) => item.id !== id
+    );
+    props.handleChange(_content);
   };
+
   const handleChange = (frameGroup: ContentFrameGroupType) => {
-    console.log(props.content.contentFrameGroup, frameGroup);
     const _content: ContentFrameGroupContainerType = {
       ...props.content,
       contentFrameGroup: [...props.content.contentFrameGroup],
@@ -90,6 +97,7 @@ const ContentFrameGroupContainer = (props: Props) => {
             layout={frameGroup.meta.layout}
             content={frameGroup}
             handleChange={handleChange}
+            handleDelete={handleDelete}
             addFrameGroup={() => handleAdd(frameGroup)}
           />
         </div>

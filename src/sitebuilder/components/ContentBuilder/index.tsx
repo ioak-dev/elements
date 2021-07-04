@@ -29,7 +29,7 @@ const ContentBuilder = (props: Props) => {
   };
 
   const handleDelete = (id: any) => {
-    // props.handleChange(props.value.filter((item: any) => item.id !== id));
+    props.handleChange(props.items.filter((item: any) => item.id !== id));
   };
 
   return (
@@ -49,6 +49,7 @@ const ContentBuilder = (props: Props) => {
               )}
               {item.type === ContentFrameItemDataType.IMAGE && (
                 <ImageContainer
+                  handleDelete={handleDelete}
                   block={item}
                   handleChange={handleChange}
                   align={props.meta.horizontalPosition}

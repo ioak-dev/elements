@@ -147,14 +147,8 @@ export const getContentFrameData = (): ContentFrameType => {
       horizontalPosition: 'center',
       verticalPosition: 'middle',
       borderThickness: 'none',
+      borderRadius: 'none',
     },
-    contentFrameItem: [
-      {
-        id: newId(),
-        type: ContentFrameItemDataType.TEXT,
-        meta: {},
-        data: {},
-      },
-    ],
+    contentFrameItem: [],
   };
 };

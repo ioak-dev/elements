@@ -140,7 +140,7 @@ const getContentFrameGroupContainer = (
     | 'wide-left'
     | 'wide-right',
   layoutResponsive: boolean,
-  gap: 'none' | 'small' | 'medium' | 'large'
+  gap: 'none' | 'xsmall' | 'small' | 'medium' | 'large' | 'xlarge'
 ) => {
   let res = '';
   res += `<div class="${getContentFrameGroupContainerClass(

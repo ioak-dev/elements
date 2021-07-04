@@ -6,10 +6,12 @@ import OakInput from '../../../oakui/wc/OakInput';
 import OakModal from '../../../oakui/wc/OakModal';
 import OakCheckbox from '../../../oakui/wc/OakCheckbox';
 import { ContentFrameMetaType } from '../../ContentFrameType';
+import OakButton from '../../../oakui/wc/OakButton';
 
 interface Props {
   meta: ContentFrameMetaType;
   handleChange: any;
+  handleDelete: any;
   isActive: boolean;
   deactivate: any;
 }
@@ -49,6 +51,12 @@ const MetaDetails = (props: Props) => {
               None
             </OakRadio>
             <OakRadio
+              name="xsmall"
+              radioGroupName={`horizontalPadding-${groupId}`}
+            >
+              Extra small
+            </OakRadio>
+            <OakRadio
               name="small"
               radioGroupName={`horizontalPadding-${groupId}`}
             >
@@ -65,6 +73,12 @@ const MetaDetails = (props: Props) => {
               radioGroupName={`horizontalPadding-${groupId}`}
             >
               Large
+            </OakRadio>
+            <OakRadio
+              name="xlarge"
+              radioGroupName={`horizontalPadding-${groupId}`}
+            >
+              Extra large
             </OakRadio>
           </OakRadioGroup>
           <OakRadioGroup
@@ -79,6 +93,12 @@ const MetaDetails = (props: Props) => {
               None
             </OakRadio>
             <OakRadio
+              name="xsmall"
+              radioGroupName={`verticalPadding-${groupId}`}
+            >
+              Extra small
+            </OakRadio>
+            <OakRadio
               name="small"
               radioGroupName={`verticalPadding-${groupId}`}
             >
@@ -95,6 +115,12 @@ const MetaDetails = (props: Props) => {
               radioGroupName={`verticalPadding-${groupId}`}
             >
               Large
+            </OakRadio>
+            <OakRadio
+              name="xlarge"
+              radioGroupName={`verticalPadding-${groupId}`}
+            >
+              Extra large
             </OakRadio>
           </OakRadioGroup>
           <OakRadioGroup
@@ -207,6 +233,27 @@ const MetaDetails = (props: Props) => {
             />
           )}
           <OakRadioGroup
+            name="borderRadius"
+            radioGroupName={`borderRadius-${groupId}`}
+            value={props.meta.borderRadius || 'none'}
+            label="Border radius"
+            handleChange={handleChange}
+            gutterBottom
+          >
+            <OakRadio name="none" radioGroupName={`borderRadius-${groupId}`}>
+              None
+            </OakRadio>
+            <OakRadio name="small" radioGroupName={`borderRadius-${groupId}`}>
+              Small
+            </OakRadio>
+            <OakRadio name="medium" radioGroupName={`borderRadius-${groupId}`}>
+              Medium
+            </OakRadio>
+            <OakRadio name="large" radioGroupName={`borderRadius-${groupId}`}>
+              Large
+            </OakRadio>
+          </OakRadioGroup>
+          <OakRadioGroup
             name="color"
             radioGroupName={`color-${groupId}`}
             value={props.meta.color}
@@ -252,6 +299,15 @@ const MetaDetails = (props: Props) => {
             />
           )}
         </div>
+      </div>
+      <div slot="footer">
+        <OakButton
+          shape="sharp"
+          theme="danger"
+          handleClick={props.handleDelete}
+        >
+          Delete
+        </OakButton>
       </div>
     </OakModal>
   );

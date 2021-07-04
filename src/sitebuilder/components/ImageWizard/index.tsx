@@ -6,11 +6,13 @@ import OakModal from '../../../oakui/wc/OakModal';
 import UnsplashPicker from '../UnsplashPicker';
 import OakInput from '../../../oakui/wc/OakInput';
 import OakCheckbox from '../../../oakui/wc/OakCheckbox';
+import OakButton from '../../../oakui/wc/OakButton';
 
 interface Props {
   imageData: any;
   isActive: boolean;
   handleChange: any;
+  handleDelete?: any;
   deactivate: any;
   heading?: string;
   supportedTypes?: ('SOLID-COLOR' | 'IMAGE' | 'UNSPLASH')[];
@@ -328,6 +330,17 @@ const ImageWizard = (props: Props) => {
             )}
           </div>
         </div>
+        {props.handleDelete && (
+          <div slot="footer">
+            <OakButton
+              shape="sharp"
+              theme="danger"
+              handleClick={props.handleDelete}
+            >
+              Delete
+            </OakButton>
+          </div>
+        )}
       </OakModal>
     </div>
   );

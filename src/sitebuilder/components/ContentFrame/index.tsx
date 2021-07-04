@@ -21,6 +21,7 @@ import {
 import OakRadio from '../../../oakui/wc/OakRadio';
 import OakModal from '../../../oakui/wc/OakModal';
 import ControlButton from '../../ui/ControlButton';
+import OakButton from '../../../oakui/wc/OakButton';
 
 interface Props {
   frame: ContentFrameType;
@@ -82,6 +83,10 @@ const ContentFrame = (props: Props) => {
       props.handleChange(_value);
     }
     setIsAddOpen(false);
+  };
+
+  const handleDelete = () => {
+    props.handleDelete(props.frame.id);
   };
 
   const getNewBlock = (type: ContentFrameItemDataType) => {
@@ -180,6 +185,7 @@ const ContentFrame = (props: Props) => {
       <MetaDetails
         isActive={isEditOpen}
         handleChange={handleMetaChange}
+        handleDelete={handleDelete}
         meta={props.frame.meta}
         deactivate={() => setIsEditOpen(false)}
       />

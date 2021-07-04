@@ -25,7 +25,7 @@ export interface SingleSectionEditorMetaType {
     | 'wide-left'
     | 'wide-right';
   layoutResponsive: boolean;
-  gap: 'none' | 'small' | 'medium' | 'large';
+  gap: 'none' | 'xsmall' | 'small' | 'medium' | 'large' | 'xlarge';
 }
 
 export interface ContentFrameMetaType {

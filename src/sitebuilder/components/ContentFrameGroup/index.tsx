@@ -20,6 +20,7 @@ interface Props {
   expandToFill: boolean;
   content: ContentFrameGroupType;
   handleChange: any;
+  handleDelete: any;
   addFrameGroup: any;
 }
 const ContentFrameGroup = (props: Props) => {
@@ -42,13 +43,24 @@ const ContentFrameGroup = (props: Props) => {
     );
     const newFrame: ContentFrameType = getContentFrameData();
     _content.contentFrame.splice(index + 1, 0, newFrame);
-    console.log(props.content, frame, _content);
     props.handleChange(_content);
   };
 
-  const handleDelete = () => {
-    console.log('delete');
+  const handleDelete = (id: string) => {
+    const _content: ContentFrameGroupType = {
+      ...props.content,
+      contentFrame: [...props.content.contentFrame],
+    };
+    _content.contentFrame = props.content.contentFrame.filter(
+      (item) => item.id !== id
+    );
+    props.handleChange(_content);
   };
+
+  const handleGroupDelete = () => {
+    props.handleDelete(props.content.id);
+  };
+
   const handleChange = (frame: ContentFrameType) => {
     const _content: ContentFrameGroupType = {
       ...props.content,
@@ -70,6 +82,7 @@ const ContentFrameGroup = (props: Props) => {
         isActive={isEditOpen}
         value={props.content.meta}
         handleChange={handleMetaChange}
+        handleDelete={handleGroupDelete}
       />
       <div className={getContentFrameGroupClass(props.content.meta)}>
         {props.content.contentFrame.map((frame, index) => (

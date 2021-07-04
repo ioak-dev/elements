@@ -5,10 +5,12 @@ import OakRadio from '../../../oakui/wc/OakRadio';
 import OakInput from '../../../oakui/wc/OakInput';
 import OakModal from '../../../oakui/wc/OakModal';
 import OakCheckbox from '../../../oakui/wc/OakCheckbox';
+import OakButton from '../../../oakui/wc/OakButton';
 
 interface Props {
   value: any;
   handleChange: any;
+  handleDelete: any;
   isActive: boolean;
   deactivate: any;
 }
@@ -156,6 +158,9 @@ const MetaDetails = (props: Props) => {
             <OakRadio name="none" radioGroupName={`gap-${groupId}`}>
               None
             </OakRadio>
+            <OakRadio name="xsmall" radioGroupName={`gap-${groupId}`}>
+              Extra small
+            </OakRadio>
             <OakRadio name="small" radioGroupName={`gap-${groupId}`}>
               Small
             </OakRadio>
@@ -164,6 +169,9 @@ const MetaDetails = (props: Props) => {
             </OakRadio>
             <OakRadio name="large" radioGroupName={`gap-${groupId}`}>
               Large
+            </OakRadio>
+            <OakRadio name="xlarge" radioGroupName={`gap-${groupId}`}>
+              Extra large
             </OakRadio>
           </OakRadioGroup>
           <OakRadioGroup
@@ -281,6 +289,16 @@ const MetaDetails = (props: Props) => {
             </OakRadio>
           </OakRadioGroup>
         </div>
+      </div>
+
+      <div slot="footer">
+        <OakButton
+          shape="sharp"
+          theme="danger"
+          handleClick={props.handleDelete}
+        >
+          Delete
+        </OakButton>
       </div>
     </OakModal>
   );

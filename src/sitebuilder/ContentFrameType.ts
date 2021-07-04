@@ -22,8 +22,8 @@ export interface ContentFrameGroupMetaType {
     | 'wide-left'
     | 'wide-right';
   layoutResponsive: boolean;
-  gap: 'none' | 'small' | 'medium' | 'large';
-  gridWidth: 'auto' | 'small' | 'medium' | 'large';
+  gap: 'none' | 'xsmall' | 'small' | 'medium' | 'large' | 'xlarge';
+  gridWidth: 'auto' | 'xsmall' | 'small' | 'medium' | 'large' | 'xlarge';
   expandToFill: boolean;
 }
 
@@ -41,14 +41,21 @@ export interface ContentFrameType {
 export interface ContentFrameMetaType {
   verticalPosition: 'top' | 'middle' | 'bottom';
   horizontalPosition: 'left' | 'center' | 'right';
-  verticalPadding: 'none' | 'small' | 'medium' | 'large';
-  horizontalPadding: 'none' | 'small' | 'medium' | 'large';
+  verticalPadding: 'none' | 'xsmall' | 'small' | 'medium' | 'large' | 'xlarge';
+  horizontalPadding:
+    | 'none'
+    | 'xsmall'
+    | 'small'
+    | 'medium'
+    | 'large'
+    | 'xlarge';
   color: 'none' | 'default' | 'primary' | 'secondary' | 'custom';
   opacity?: number;
   gap: 'none' | 'small' | 'medium' | 'large';
   hex?: string;
   borderColorHex?: string;
   borderThickness?: 'none' | 'thin' | 'normal' | 'thick';
+  borderRadius?: 'none' | 'small' | 'medium' | 'large';
 }
 
 export interface ContentFrameItemType {

@@ -109,6 +109,9 @@ const MetaDetails = (props: Props) => {
             <OakRadio name="none" radioGroupName={`gap-${groupId}`}>
               None
             </OakRadio>
+            <OakRadio name="xsmall" radioGroupName={`gap-${groupId}`}>
+              Extra small
+            </OakRadio>
             <OakRadio name="small" radioGroupName={`gap-${groupId}`}>
               Small
             </OakRadio>
@@ -117,6 +120,9 @@ const MetaDetails = (props: Props) => {
             </OakRadio>
             <OakRadio name="large" radioGroupName={`gap-${groupId}`}>
               Large
+            </OakRadio>
+            <OakRadio name="xlarge" radioGroupName={`gap-${groupId}`}>
+              Extra large
             </OakRadio>
           </OakRadioGroup>
           <OakRadioGroup

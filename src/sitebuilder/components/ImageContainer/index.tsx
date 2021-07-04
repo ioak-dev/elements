@@ -13,6 +13,7 @@ import ControlButton from '../../ui/ControlButton';
 interface Props {
   block: any;
   handleChange: any;
+  handleDelete?: any;
   align: 'left' | 'right' | 'center';
 }
 
@@ -24,6 +25,10 @@ const ImageContainer = (props: Props) => {
     props.handleChange(imageData);
   };
 
+  const handleDelete = () => {
+    props.handleDelete(props.block.id);
+  };
+
   return (
     <>
       <ImageWizard
@@ -31,6 +36,7 @@ const ImageContainer = (props: Props) => {
         imageData={props.block}
         isActive={isOpen}
         handleChange={handleImageChange}
+        handleDelete={props.handleDelete ? handleDelete : null}
         heading="Choose image"
         supportedTypes={['IMAGE', 'UNSPLASH']}
         supportedModifiers={['OVERLAY', 'PARALLAX', 'HEIGHT', 'SHAPE']}

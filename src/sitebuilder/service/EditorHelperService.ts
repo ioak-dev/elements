@@ -196,7 +196,7 @@ export const getContentFrameGroupContainerClass = (
     | 'wide-left'
     | 'wide-right',
   layoutResponsive: boolean,
-  gap: 'none' | 'small' | 'medium' | 'large'
+  gap: 'none' | 'xsmall' | 'small' | 'medium' | 'large' | 'xlarge'
 ) => {
   const base = 'elements-site__content-frame-group-container';
   let res = base;
@@ -235,6 +235,7 @@ export const getContentFrameClass = (meta: ContentFrameMetaType) => {
   res += ` ${base}--align-y-${meta.verticalPosition}`;
   res += ` ${base}--color-${meta.color}`;
   res += ` ${base}--border-thickness-${meta.borderThickness}`;
+  res += ` ${base}--border-radius-${meta.borderRadius}`;
   if (meta.borderThickness && meta.borderThickness !== 'none') {
     res += ` ${base}--border`;
   }
