@@ -194,6 +194,7 @@ const ContentFrame = (props: Props) => {
         className={`content-frame-editor ${getContentFrameClass(
           props.frame.meta
         )}`}
+        data-rellax-speed={props.frame.meta.parallaxSpeed}
       >
         <ContentBuilder
           handleChange={handleContentChange}

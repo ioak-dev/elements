@@ -195,6 +195,24 @@ const MetaDetails = (props: Props) => {
               Right
             </OakRadio>
           </OakRadioGroup>
+          <OakCheckbox
+            name="parallax"
+            value={props.meta.parallax || false}
+            handleChange={handleChange}
+            gutterBottom
+          >
+            Parallax
+          </OakCheckbox>
+          {props.meta.parallax && (
+            <OakInput
+              type="number"
+              name="parallaxSpeed"
+              value={props.meta.parallaxSpeed || -2}
+              label="Parallax speed"
+              handleChange={handleChange}
+              gutterBottom
+            />
+          )}
           <OakRadioGroup
             name="borderThickness"
             radioGroupName={`borderThickness-${groupId}`}

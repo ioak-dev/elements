@@ -148,6 +148,8 @@ export const getContentFrameData = (): ContentFrameType => {
       verticalPosition: 'middle',
       borderThickness: 'none',
       borderRadius: 'none',
+      parallax: false,
+      parallaxSpeed: -2
     },
     contentFrameItem: [],
   };

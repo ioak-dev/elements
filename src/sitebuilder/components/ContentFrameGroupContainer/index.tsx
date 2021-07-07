@@ -23,7 +23,7 @@ interface Props {
     | 'wide-left'
     | 'wide-right';
   layoutResponsive: boolean;
-  gap: 'none' | 'small' | 'medium' | 'large';
+  gap: 'none' | 'xsmall' | 'small' | 'medium' | 'large' | 'xlarge';
   content: ContentFrameGroupContainerType;
   handleChange: any;
 }

@@ -11,7 +11,11 @@ import {
 const tinycolor = require('tinycolor2');
 
 export const toHtml = (sections: any[]) => {
-  let res = '';
+  let res =
+    '<script src="https://cdn.jsdelivr.net/gh/dixonandmoe/rellax@master/rellax.min.js"></script>';
+  res += `<script>var rellax = new Rellax('.elements-site-parallax', {
+    center: true
+  });</script>`;
   sections.forEach((section) => {
     switch (section.type) {
       case SectionType.SINGLE_SECTION:

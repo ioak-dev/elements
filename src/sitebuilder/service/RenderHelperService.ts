@@ -182,7 +182,12 @@ const getContentFrame = (frame: ContentFrameType) => {
   let style = `--content-frame-border-color: ${computedStyle.borderColor};`;
   style += `--content-frame-background-color: ${computedStyle.backgroundColor};`;
   let res = '';
-  res += `<div class="${getContentFrameClass(frame.meta)}" style="${style}">`;
+  const parallaxSection = frame.meta.parallax
+    ? `data-rellax-speed="${frame.meta.parallaxSpeed || 2}"`
+    : '';
+  res += `<div class="${getContentFrameClass(
+    frame.meta
+  )}" style="${style}" ${parallaxSection}>`;
   res += getContentBuilder(frame.contentFrameItem, frame.meta);
   res += '</div>';
   return res;

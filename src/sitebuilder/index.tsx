@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
+import Rellax from 'rellax';
 import './style.scss';
 // import {} from 'lod';
 import ActionButton from './ui/ActionButton';
@@ -29,6 +30,39 @@ interface Props {
 
 const SiteBuilder = (props: Props) => {
   const [currentEditorId, setCurrentEditorId] = useState('');
+
+  const [parallaxLow, setParallaxLow] = useState<any>(null);
+
+  useEffect(() => {
+    console.log('**initialize parallax');
+    setParallaxLow(
+      new Rellax('.elements-site-parallax', {
+        speed: 5,
+        center: true,
+        round: true,
+        vertical: true,
+        horizontal: false,
+      })
+    );
+  }, []);
+
+  useEffect(() => {
+    if (props.value && parallaxLow) {
+      parallaxLow.destroy();
+      setParallaxLow(
+        new Rellax('.elements-site-parallax', {
+          speed: 5,
+          center: true,
+          round: true,
+          vertical: true,
+          horizontal: false,
+        })
+      );
+      //   console.log('**', parallaxLow);
+      //   console.log('**refresh parallax');
+      //   parallaxLow.refresh();
+    }
+  }, [props.value]);
 
   const handleChange = (section: any, value: any) => {
     const _value = [...props.value];
@@ -133,6 +167,7 @@ const SiteBuilder = (props: Props) => {
 
   return (
     <div className="site-builder">
+      <div className="elements-site-parallax" />
       {props.value.map((section: any, index: number) => (
         <div key={section.id} className="site-builder__container">
           <div className="site-builder__container__action">

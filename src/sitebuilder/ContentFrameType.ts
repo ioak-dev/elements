@@ -52,6 +52,8 @@ export interface ContentFrameMetaType {
   color: 'none' | 'default' | 'primary' | 'secondary' | 'custom';
   opacity?: number;
   gap: 'none' | 'small' | 'medium' | 'large';
+  parallax?: boolean;
+  parallaxSpeed?: number;
   hex?: string;
   borderColorHex?: string;
   borderThickness?: 'none' | 'thin' | 'normal' | 'thick';

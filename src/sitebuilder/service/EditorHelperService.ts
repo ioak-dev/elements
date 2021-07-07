@@ -236,6 +236,9 @@ export const getContentFrameClass = (meta: ContentFrameMetaType) => {
   res += ` ${base}--color-${meta.color}`;
   res += ` ${base}--border-thickness-${meta.borderThickness}`;
   res += ` ${base}--border-radius-${meta.borderRadius}`;
+  if (meta.parallax) {
+    res += ` elements-site-parallax`;
+  }
   if (meta.borderThickness && meta.borderThickness !== 'none') {
     res += ` ${base}--border`;
   }
