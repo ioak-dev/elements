@@ -1,0 +1,34 @@
+.elements-site__content-root {
+  display: grid;
+  grid-auto-flow: row;
+  row-gap: 20px;
+}
+.elements-site__content-root--align-left {
+  justify-items: flex-start;
+}
+.elements-site__content-root--align-center {
+  justify-items: center;
+}
+.elements-site__content-root--align-right {
+  justify-items: flex-end;
+}
+.elements-site__content-root__type-selection {
+  display: grid;
+  grid-auto-flow: row;
+  row-gap: 10px;
+}
+.elements-site__content-root--padding-xsmall {
+  padding: 20px;
+}
+.elements-site__content-root--padding-small {
+  padding: 40px;
+}
+.elements-site__content-root--padding-medium {
+  padding: 60px;
+}
+.elements-site__content-root--padding-large {
+  padding: 80px;
+}
+.elements-site__content-root--padding-xlarge {
+  padding: 100px;
+}

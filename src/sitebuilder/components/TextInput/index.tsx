@@ -7,6 +7,7 @@ import OakClickArea from '../../../oakui/wc/OakClickArea';
 import MetaDetails from './MetaDetails';
 import { getTextClass, getTextStyle } from '../../service/EditorHelperService';
 import { ContentFrameItemType } from '../../ContentFrameType';
+import { DisableParallaxCommand } from 'src/SiteBuilder/event/DisableParallax';
 
 const tinycolor = require('tinycolor2');
 
@@ -61,6 +62,12 @@ const TextInput = (props: Props) => {
     props.handleDelete(props.block.id);
     setIsOpen(false);
   };
+
+  useEffect(() => {
+    isOpen
+      ? DisableParallaxCommand.next(true)
+      : DisableParallaxCommand.next(false);
+  }, [isOpen]);
 
   return (
     <>

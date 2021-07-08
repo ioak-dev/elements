@@ -21,6 +21,7 @@ import {
   getSingleSectionEditorData,
   getSplitSectionEditorData,
 } from './service/DataTypeService';
+import { DisableParallaxCommand } from './event/DisableParallax';
 // import { ScrollToBlockCommand } from './types/ScrollToBlockCommand';
 
 interface Props {
@@ -31,38 +32,43 @@ interface Props {
 const SiteBuilder = (props: Props) => {
   const [currentEditorId, setCurrentEditorId] = useState('');
 
-  const [parallaxLow, setParallaxLow] = useState<any>(null);
+  const parallaxLow = useRef<any>(null);
+  const disableParallax = useRef<boolean>(false);
 
   useEffect(() => {
-    console.log('**initialize parallax');
-    setParallaxLow(
-      new Rellax('.elements-site-parallax', {
-        speed: 5,
-        center: true,
-        round: true,
-        vertical: true,
-        horizontal: false,
-      })
-    );
+    initializeParallax();
+    DisableParallaxCommand.subscribe((message) => {
+      disableParallax.current = message;
+      if (message && parallaxLow.current) {
+        parallaxLow.current.destroy();
+      } else if (!message) {
+        initializeParallax();
+      }
+    });
   }, []);
 
   useEffect(() => {
-    if (props.value && parallaxLow) {
-      parallaxLow.destroy();
-      setParallaxLow(
-        new Rellax('.elements-site-parallax', {
-          speed: 5,
-          center: true,
-          round: true,
-          vertical: true,
-          horizontal: false,
-        })
-      );
-      //   console.log('**', parallaxLow);
-      //   console.log('**refresh parallax');
-      //   parallaxLow.refresh();
+    if (props.value && parallaxLow.current) {
+      initializeParallax();
     }
   }, [props.value]);
+
+  const initializeParallax = () => {
+    console.log('disableParallax', disableParallax.current);
+    if (disableParallax.current) {
+      return;
+    }
+    if (parallaxLow.current) {
+      parallaxLow.current.destroy();
+    }
+    parallaxLow.current = new Rellax('.elements-site-parallax', {
+      speed: 2,
+      center: true,
+      round: true,
+      vertical: true,
+      horizontal: false,
+    });
+  };
 
   const handleChange = (section: any, value: any) => {
     const _value = [...props.value];

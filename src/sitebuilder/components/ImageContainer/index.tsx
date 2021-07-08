@@ -9,6 +9,7 @@ import {
 } from '../../service/EditorHelperService';
 import ImageWizard from '../ImageWizard';
 import ControlButton from '../../ui/ControlButton';
+import { DisableParallaxCommand } from '../../event/DisableParallax';
 
 interface Props {
   block: any;
@@ -28,6 +29,12 @@ const ImageContainer = (props: Props) => {
   const handleDelete = () => {
     props.handleDelete(props.block.id);
   };
+
+  useEffect(() => {
+    isOpen
+      ? DisableParallaxCommand.next(true)
+      : DisableParallaxCommand.next(false);
+  }, [isOpen]);
 
   return (
     <>

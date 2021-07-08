@@ -12,6 +12,7 @@
   --elements-toolbar-button-border-radius: 0px;
   --elements-section-label-color: var(--color-3);
   --elements-section-label-font-size: 12px;
+  --oak-app-layout-topbar-height: 50px;
 }
 
 .elements-inline-children > * {
@@ -92,16 +93,16 @@
 }
 
 .elements-fontfamily-title {
-  font-family: 'Merriweather', serif;
+  font-family: "Merriweather", serif;
 }
 .elements-fontfamily-body {
-  font-family: 'Open Sans', sans-serif;
+  font-family: "Open Sans", sans-serif;
 }
 .elements-fontfamily-title-alternate {
-  font-family: 'Merriweather Sans', sans-serif;
+  font-family: "Merriweather Sans", sans-serif;
 }
 .elements-fontfamily-body-alternate {
-  font-family: 'Nunito Sans', sans-serif;
+  font-family: "Nunito Sans", sans-serif;
 }
 .elements-fontstyle-italic {
   font-style: italic;
