@@ -54,7 +54,6 @@ const SiteBuilder = (props: Props) => {
   }, [props.value]);
 
   const initializeParallax = () => {
-    console.log('disableParallax', disableParallax.current);
     if (disableParallax.current) {
       return;
     }

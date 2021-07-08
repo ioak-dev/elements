@@ -207,7 +207,7 @@ const MetaDetails = (props: Props) => {
             <OakInput
               type="number"
               name="parallaxSpeed"
-              value={props.meta.parallaxSpeed || -2}
+              value={props.meta.parallaxSpeed || 2}
               label="Parallax speed"
               handleChange={handleChange}
               gutterBottom

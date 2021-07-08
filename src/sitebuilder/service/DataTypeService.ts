@@ -149,7 +149,7 @@ export const getContentFrameData = (): ContentFrameType => {
       borderThickness: 'none',
       borderRadius: 'none',
       parallax: false,
-      parallaxSpeed: -2
+      parallaxSpeed: 2,
     },
     contentFrameItem: [],
   };
