@@ -12,6 +12,7 @@
   --elements-toolbar-button-border-radius: 0px;
   --elements-section-label-color: var(--color-3);
   --elements-section-label-font-size: 12px;
+  --oak-app-layout-topbar-height: 50px;
 }
 
 .elements-inline-children > * {
@@ -29,6 +30,30 @@
 .elements-fontsize-h1-small {
   font-size: 36px;
   line-height: 46px;
+}
+.elements-fontsize-h2-large {
+  font-size: 42px;
+  line-height: 52px;
+}
+.elements-fontsize-h2-medium {
+  font-size: 36px;
+  line-height: 46px;
+}
+.elements-fontsize-h2-small {
+  font-size: 30px;
+  line-height: 40px;
+}
+.elements-fontsize-h3-large {
+  font-size: 36px;
+  line-height: 46px;
+}
+.elements-fontsize-h3-medium {
+  font-size: 30px;
+  line-height: 40px;
+}
+.elements-fontsize-h3-small {
+  font-size: 24px;
+  line-height: 34px;
 }
 
 .elements-fontsize-body-large {
@@ -68,16 +93,16 @@
 }
 
 .elements-fontfamily-title {
-  font-family: 'Merriweather', serif;
+  font-family: "Merriweather", serif;
 }
 .elements-fontfamily-body {
-  font-family: 'Open Sans', sans-serif;
+  font-family: "Open Sans", sans-serif;
 }
 .elements-fontfamily-title-alternate {
-  font-family: 'Merriweather', serif;
+  font-family: "Merriweather Sans", sans-serif;
 }
 .elements-fontfamily-body-alternate {
-  font-family: 'Open Sans', sans-serif;
+  font-family: "Nunito Sans", sans-serif;
 }
 .elements-fontstyle-italic {
   font-style: italic;
@@ -120,4 +145,13 @@
 
 .elements-site-color-picker {
   width: 80px;
+}
+
+* {
+  --elements-editor-font-family-body: inherit;
+  --elements-editor-font-family-h1: inherit;
+  --elements-editor-font-family-h2: inherit;
+  --elements-editor-font-family-h3: inherit;
+  --elements-editor-font-family-h4: inherit;
+  --elements-editor-font-family-list: inherit;
 }

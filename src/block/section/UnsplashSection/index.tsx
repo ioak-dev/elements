@@ -1,7 +1,13 @@
 import React, { useEffect, useState } from 'react';
+import {
+  faAlignCenter,
+  faAlignJustify,
+  faAlignLeft,
+  faAlignRight,
+} from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Sectionlabel from '../../ui/SectionLabel';
-import ToolButton from '../../ui/ToolButton';
-import ParagraphEditor from '../../editor/ParagraphEditor';
+import SectionButton from '../../../SiteBuilder/ui/SectionButton';
 import UnsplashEditor from '../../editor/UnsplashEditor';
 import NavigationActionType from '../NavigationActionType';
 import NavigationToolset from '../NavigationToolset';
@@ -24,7 +30,9 @@ const UnsplashSection = (props: Props) => {
     props.handleNavigation(value);
   };
 
-  const handlePositionChange = (position: 'left' | 'right' | 'center') => {
+  const handlePositionChange = (
+    position: 'left' | 'right' | 'center' | 'full'
+  ) => {
     const _newData = { ...props.value.data, position };
     props.handleChange(_newData);
   };
@@ -33,28 +41,33 @@ const UnsplashSection = (props: Props) => {
     <div className="elements-editor-section">
       <div className="elements-editor-section__toolbar">
         <div className="elements-editor-section__toolbar__left">
-          <Sectionlabel label={props.label || 'PARAGRAPH'} />
-          {!props.fixed && (
-            <ToolButton handleClick={() => handlePositionChange('left')}>
-              Left
-            </ToolButton>
-          )}
-          {!props.fixed && (
-            <ToolButton handleClick={() => handlePositionChange('right')}>
-              Right
-            </ToolButton>
-          )}
-          {!props.fixed && (
-            <ToolButton handleClick={() => handlePositionChange('center')}>
-              Center
-            </ToolButton>
-          )}
-        </div>
-        <div className="elements-editor-section__toolbar__right">
           <NavigationToolset
             actions={props.navigationActions}
             handleAction={handleNavigation}
           />
+        </div>
+        <div className="elements-editor-section__toolbar__right">
+          <Sectionlabel label={props.label || 'PARAGRAPH'} />
+          {!props.fixed && (
+            <SectionButton handleClick={() => handlePositionChange('left')}>
+              <FontAwesomeIcon icon={faAlignLeft} />
+            </SectionButton>
+          )}
+          {!props.fixed && (
+            <SectionButton handleClick={() => handlePositionChange('right')}>
+              <FontAwesomeIcon icon={faAlignRight} />
+            </SectionButton>
+          )}
+          {!props.fixed && (
+            <SectionButton handleClick={() => handlePositionChange('center')}>
+              <FontAwesomeIcon icon={faAlignCenter} />
+            </SectionButton>
+          )}
+          {!props.fixed && (
+            <SectionButton handleClick={() => handlePositionChange('full')}>
+              <FontAwesomeIcon icon={faAlignJustify} />
+            </SectionButton>
+          )}
         </div>
       </div>
       <div className="elements-editor-section__editor">

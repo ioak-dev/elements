@@ -4,7 +4,7 @@ import './style.scss';
 import {
   getActionButtonClass,
   getActionButtonStyle,
-} from '../../service/SitebuilderService';
+} from '../../service/EditorHelperService';
 
 interface Props {
   children: any;

@@ -101,7 +101,6 @@ const BlockEditor = (props: Props) => {
   };
 
   const setBlockType = (block: any, type: BlockType) => {
-    console.log(block, type);
     const _data = [...dataRef.current];
     _data.forEach((item) => {
       if (item.id === block.id) {
@@ -140,7 +139,6 @@ const BlockEditor = (props: Props) => {
   };
 
   const moveUp = (block: any) => {
-    console.log(block);
     const _data: any[] = [...dataRef.current];
     const index = _data.findIndex((item) => item.id === block.id);
     arraymove(_data, index, index - 1);

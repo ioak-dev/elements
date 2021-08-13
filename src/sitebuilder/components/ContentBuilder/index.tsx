@@ -7,7 +7,7 @@ import {
 } from '../../ContentFrameType';
 import { newId } from '../../../utils/BasicUtil';
 import TextInput from '../TextInput';
-import { getContentClass } from '../../service/SitebuilderService';
+import { getContentClass } from '../../service/EditorHelperService';
 import ImageContainer from '../ImageContainer';
 import ActionLinks from '../ActionLinks';
 
@@ -20,7 +20,6 @@ const ContentBuilder = (props: Props) => {
   const [groupId, setGroupId] = useState(newId());
 
   const handleChange = (item: any) => {
-    console.log(item, props.items);
     const index = props.items.findIndex((_item: any) => item.id === _item.id);
     if (index >= 0) {
       const _items = [...props.items];
@@ -30,7 +29,7 @@ const ContentBuilder = (props: Props) => {
   };
 
   const handleDelete = (id: any) => {
-    // props.handleChange(props.value.filter((item: any) => item.id !== id));
+    props.handleChange(props.items.filter((item: any) => item.id !== id));
   };
 
   return (
@@ -50,6 +49,7 @@ const ContentBuilder = (props: Props) => {
               )}
               {item.type === ContentFrameItemDataType.IMAGE && (
                 <ImageContainer
+                  handleDelete={handleDelete}
                   block={item}
                   handleChange={handleChange}
                   align={props.meta.horizontalPosition}

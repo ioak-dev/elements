@@ -14,19 +14,19 @@ const MetaDetails = (props: Props) => {
   const [groupId, setGroupId] = useState(newId());
   const [elementId, setElementId] = useState(newId());
 
-  const handleCommonChange = (value: any) => {
-    props.handleChange(value);
+  const handleCommonChange = (meta: any) => {
+    props.handleChange({ ...props.value, meta });
   };
 
-  const handleLeftChange = (value: any) => {
+  const handleLeftChange = (meta: any) => {
     const _value = { ...props.value };
-    _value.left = value;
+    _value.left.meta = meta;
     props.handleChange(_value);
   };
 
-  const handleRightChange = (value: any) => {
+  const handleRightChange = (meta: any) => {
     const _value = { ...props.value };
-    _value.right = value;
+    _value.right.meta = meta;
     props.handleChange(_value);
   };
 
@@ -43,14 +43,14 @@ const MetaDetails = (props: Props) => {
             <CommonMetaDetailsSection
               deactivate={props.deactivate}
               handleChange={handleCommonChange}
-              value={props.value}
+              value={props.value.meta}
               isActive={props.isActive}
             />
             <div className="site-modal-section__title">Left section</div>
             <MetaDetailsSection
               deactivate={props.deactivate}
               handleChange={handleLeftChange}
-              value={props.value.left}
+              value={props.value.left.meta}
               isActive={props.isActive}
             />
           </div>
@@ -59,7 +59,7 @@ const MetaDetails = (props: Props) => {
             <MetaDetailsSection
               deactivate={props.deactivate}
               handleChange={handleRightChange}
-              value={props.value.right}
+              value={props.value.right.meta}
               isActive={props.isActive}
             />
           </div>

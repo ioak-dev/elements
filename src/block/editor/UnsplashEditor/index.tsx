@@ -6,6 +6,14 @@ import OakPaginate from '../../../oakui/wc/OakPaginate';
 import { searchUnsplash } from '../../section/UnsplashSection/service';
 import RichTextEditor from '../RichTextEditor';
 import RichTextControlType from '../RichTextEditor/RichTextControlType';
+import {
+  getUnsplashClass,
+  getUnsplashContainerClass,
+  getUnsplashContainerImageClass,
+  getUnsplashContainerImageImgClass,
+  getUnsplashContainerTextClass,
+  getUnsplashContainerTextContainerClass,
+} from '../../service/EditorHelperService';
 import './style.scss';
 
 interface Props {
@@ -15,7 +23,6 @@ interface Props {
 }
 const UnsplashEditor = (props: Props) => {
   const [chooseImage, setChooseImage] = useState(false);
-  const [editing, setEditing] = useState(false);
   const [state, setState] = useState({
     searchText: '',
     pageNo: 1,
@@ -70,20 +77,16 @@ const UnsplashEditor = (props: Props) => {
   };
 
   return (
-    <div className="unsplash-editor">
+    <div className={getUnsplashClass()}>
       {!chooseImage && props.value.data?.raw?.urls?.regular && (
         <div
-          className={`unsplash-editor__output__container unsplash-editor__output__container--${
-            props.value.data.position
-          } ${
-            props.value.data.position !== 'center'
-              ? `oak-editor-two-column oak-editor-two-column--${props.value.data.position}`
-              : ''
-          }`}
+          className={`unsplash-editor__main ${getUnsplashContainerClass(
+            props.value
+          )}`}
         >
           {props.value.data.position === 'right' && (
-            <div className="unsplash-editor__output__container__text">
-              <div className="unsplash-editor__output__container__text__container">
+            <div className={getUnsplashContainerTextClass()}>
+              <div className={getUnsplashContainerTextContainerClass()}>
                 <RichTextEditor
                   controls={[
                     RichTextControlType.BOLD,
@@ -99,9 +102,13 @@ const UnsplashEditor = (props: Props) => {
               </div>
             </div>
           )}
-          <div className="unsplash-editor__output__container__image">
+          <div
+            className={`unsplash-editor__main__image-container ${getUnsplashContainerImageClass()}`}
+          >
             <img
-              className="unsplash-editor__output__container__image__img"
+              className={`unsplash-editor__main__img ${getUnsplashContainerImageImgClass(
+                props.value
+              )}`}
               src={props.value.data.raw.urls.regular}
               alt={props.value.data.raw.alt_description}
             />
@@ -124,8 +131,8 @@ const UnsplashEditor = (props: Props) => {
             </OakButton>
           </div>
           {props.value.data.position === 'left' && (
-            <div className="unsplash-editor__output__container__text">
-              <div className="unsplash-editor__output__container__text__container">
+            <div className={getUnsplashContainerTextClass()}>
+              <div className={getUnsplashContainerTextContainerClass()}>
                 <RichTextEditor
                   controls={[
                     RichTextControlType.BOLD,
@@ -144,8 +151,8 @@ const UnsplashEditor = (props: Props) => {
         </div>
       )}
       {(chooseImage || !props.value.data?.raw?.urls?.thumb) && (
-        <div className="unsplash-editor__input__container">
-          <div className="unsplash-editor__input__container__search">
+        <div className="unsplash-editor__choose-image">
+          <div className="unsplash-editor__choose-image__search">
             <OakPaginate
               variant="list"
               formElementShape="underline"
@@ -160,14 +167,14 @@ const UnsplashEditor = (props: Props) => {
               handleChange={handlePaginateChange}
             />
           </div>
-          <div className="unsplash-editor__input__container__results">
+          <div className="unsplash-editor__choose-image__results">
             {results.map((item: any) => (
               <OakClickArea
                 key={item.id}
                 handleClick={() => handleImageChange(item)}
               >
                 <img
-                  className="unsplash-editor__input__container__results__img"
+                  className="unsplash-editor__choose-image__results__img"
                   src={item.urls.thumb}
                   alt={item.alt_description}
                 />

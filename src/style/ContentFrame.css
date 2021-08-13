@@ -2,30 +2,47 @@
   height: 100%;
   box-sizing: border-box;
   display: flex;
+  overflow: hidden;
 }
-.elements-site__content-frame--padding-x-small {
+.elements-site__content-frame--padding-x-xsmall {
   padding-left: 10px;
   padding-right: 10px;
 }
-.elements-site__content-frame--padding-y-small {
+.elements-site__content-frame--padding-y-xsmall {
   padding-top: 10px;
   padding-bottom: 10px;
 }
-.elements-site__content-frame--padding-x-medium {
+.elements-site__content-frame--padding-x-small {
   padding-left: 20px;
   padding-right: 20px;
 }
-.elements-site__content-frame--padding-y-medium {
+.elements-site__content-frame--padding-y-small {
   padding-top: 20px;
   padding-bottom: 20px;
 }
-.elements-site__content-frame--padding-x-large {
+.elements-site__content-frame--padding-x-medium {
   padding-left: 30px;
   padding-right: 30px;
 }
-.elements-site__content-frame--padding-y-large {
+.elements-site__content-frame--padding-y-medium {
   padding-top: 30px;
   padding-bottom: 30px;
+}
+.elements-site__content-frame--padding-x-large {
+  padding-left: 40px;
+  padding-right: 40px;
+}
+.elements-site__content-frame--padding-y-large {
+  padding-top: 40px;
+  padding-bottom: 40px;
+}
+.elements-site__content-frame--padding-x-xlarge {
+  padding-left: 40px;
+  padding-right: 40px;
+}
+.elements-site__content-frame--padding-y-xlarge {
+  padding-top: 50px;
+  padding-bottom: 50px;
 }
 
 .elements-site__content-frame--align-x-left {
@@ -79,7 +96,7 @@
   background-color: var(--color-secondary);
 }
 .elements-site__content-frame--color-custom {
-  background-color: var(--content-frame-color);
+  background-color: var(--content-frame-background-color);
 }
 
 .elements-site__content-frame--border {
@@ -97,4 +114,16 @@
 }
 .elements-site__content-frame--border-thickness-thick {
   border-width: 4px;
+}
+.elements-site__content-frame--border-radius-none {
+  border-radius: 0px;
+}
+.elements-site__content-frame--border-radius-small {
+  border-radius: 6px;
+}
+.elements-site__content-frame--border-radius-medium {
+  border-radius: 12px;
+}
+.elements-site__content-frame--border-radius-large {
+  border-radius: 18px;
 }

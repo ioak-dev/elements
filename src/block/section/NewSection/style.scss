@@ -7,3 +7,8 @@
   color: var(--elements-section-text-color);
   padding: 4px 10px;
 }
+.new-section__container {
+  display: grid;
+  grid-auto-flow: row;
+  row-gap: 20px;
+}

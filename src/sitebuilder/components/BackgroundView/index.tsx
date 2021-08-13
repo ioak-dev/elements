@@ -12,7 +12,7 @@ import ImageWizard from '../ImageWizard';
 import {
   getBackgroundClass,
   getBackgroundStyle,
-} from '../../service/SitebuilderService';
+} from '../../service/EditorHelperService';
 import ControlButton from '../../ui/ControlButton';
 
 interface Props {

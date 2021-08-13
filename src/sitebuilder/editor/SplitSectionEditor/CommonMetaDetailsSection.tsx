@@ -43,7 +43,7 @@ const CommonMetaDetailsSection = (props: Props) => {
         <OakRadio name="full" radioGroupName={`height-${groupId}`}>
           Full page
         </OakRadio>
-      </OakRadioGroup>{' '}
+      </OakRadioGroup>
     </>
   );
 };

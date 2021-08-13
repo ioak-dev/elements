@@ -1,67 +1,94 @@
-.unsplash-editor {
+.elements-editor__unsplash {
   display: grid;
   grid-auto-flow: row;
   justify-items: center;
 }
-// .unsplash-editor__output__container {
-//   display: grid;
-//   justify-items: center;
-//   width: 50%;
-// }
-.oak-editor-two-column {
-}
-.unsplash-editor__output__container--center {
-  width: 50%;
-}
-.unsplash-editor__output__container__text,
-.unsplash-editor__output__container__image {
+.elements-editor__unsplash__container {
   width: 100%;
 }
-.unsplash-editor__output__container__image__img {
-  width: 100%;
-}
-.unsplash-editor__input {
-  display: flex;
+.elements-editor__unsplash__container--position-center,
+.elements-editor__unsplash__container--position-full {
   justify-content: center;
-  border: none;
-  transition: border-color 250ms ease-in-out;
-  &:hover {
-    // border: 1px dotted var(--color-3);
+  display: flex;
+  margin-bottom: 24px;
+}
+.elements-editor__unsplash__container__image__img {
+  width: 100%;
+}
+.elements-editor__unsplash__container__image__img--position-left,
+.elements-editor__unsplash__container__image__img--position-right,
+.elements-editor__unsplash__container__image__img--position-center {
+  @media (min-width: 767px) {
+    width: 50%;
   }
 }
-.unsplash-editor__input--editing {
-  transition: border-color 250ms ease-in-out;
-  // border: 1px dotted var(--color-1);
-  &:hover {
-    // border: 1px dotted var(--color-1);
+.elements-editor__unsplash__container__image__img--position-center {
+  @media (min-width: 767px) {
+    min-width: 540px;
   }
 }
-.unsplash-editor__input__container {
+.elements-editor__unsplash__container__image__img--position-left {
+  @media (min-width: 767px) {
+    float: left;
+    margin-right: 10px;
+    margin-bottom: 10px;
+  }
+}
+.elements-editor__unsplash__container__image__img--position-right {
+  @media (min-width: 767px) {
+    float: right;
+    margin-left: 10px;
+    margin-bottom: 10px;
+  }
+}
+
+.unsplash-editor__main.elements-editor__unsplash__container--position-left,
+.unsplash-editor__main.elements-editor__unsplash__container--position-right {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 10px;
+}
+.unsplash-editor__main.elements-editor__unsplash__container--position-center
+  .unsplash-editor__main__image-container {
+  display: block;
+  width: 50%;
+  min-width: 50%;
+}
+.unsplash-editor__main__img.elements-editor__unsplash__container__image__img--position-left,
+.unsplash-editor__main__img.elements-editor__unsplash__container__image__img--position-right,
+.unsplash-editor__main__img.elements-editor__unsplash__container__image__img--position-center {
+  width: 100%;
+  // To overcome minimum width setting when on center position
+  min-width: 100%;
+  padding-left: 0;
+  padding-right: 0;
+}
+.unsplash-editor__choose-image {
   display: grid;
   grid-auto-flow: row;
   row-gap: 20px;
   width: 100%;
 }
-.unsplash-editor__input__container__search {
+.unsplash-editor__choose-image__search {
   display: grid;
   grid-template-columns: 1fr auto;
 }
-.unsplash-editor__input__container__results {
+.unsplash-editor__choose-image__results {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   justify-items: center;
 }
 
-.unsplash-editor__input__container__results__img {
+.unsplash-editor__choose-image__results__img {
   width: 100%;
   transition: opacity 250ms ease-in-out;
   &:hover {
     opacity: 0.5;
   }
 }
-.unsplash-editor__output__container__text {
+.elements-editor__unsplash__container__text {
   background-color: var(--color-surface);
 }
-.unsplash-editor__output__container__text__container {
+.elements-editor__unsplash__container__text__container {
   padding: 4px 10px;
 }

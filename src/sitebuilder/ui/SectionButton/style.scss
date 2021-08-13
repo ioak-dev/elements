@@ -1,0 +1,37 @@
+.section-button {
+  z-index: 1;
+  // background-color: var(--color-default);
+  background-color: transparent;
+  color: var(--color-1);
+  // border: 2px solid var(--color-default);
+  border: none;
+  box-shadow: none;
+  padding: 4px 10px;
+  height: 30px;
+  width: 30px;
+  border-radius: 30px;
+  display: grid;
+  grid-auto-flow: column;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 12px;
+  font-family: Roboto, sans-serif;
+  font-weight: 500;
+  svg {
+    width: 20px;
+  }
+  svg path {
+    fill: var(--color-1);
+    transition: fill 250ms ease-in-out;
+  }
+  transition: color 250ms ease-in-out, background-color 250ms ease-in-out,
+    border-color 250ms ease-in-out;
+}
+.section-button:hover,
+.section-button:focus {
+  // background-color: var(--color-default-dark);
+  // color: var(--color-default-dark-i);
+  // border: 2px solid var(--color-default-dark);
+  background-color: rgba(84, 123, 161, 0.2);
+}

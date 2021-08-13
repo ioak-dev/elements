@@ -1,6 +1,12 @@
 /* eslint-disable import/prefer-default-export */
 
 import BlockType from '../BlockEditor/BlockType';
+import {
+  getHeading,
+  getParagraph,
+  getList,
+  getUnsplash,
+} from './RenderHelperService';
 
 export const toHtml = (blocks: any[]) => {
   let result = '';
@@ -8,27 +14,16 @@ export const toHtml = (blocks: any[]) => {
   blocks.forEach((block) => {
     switch (block.type) {
       case BlockType.HEADING:
-        result += `<h${block.data.level}>${block.data.text}</h${block.data.level}>`;
+        result += getHeading(block);
         break;
       case BlockType.PARAGRAPH:
-        result += `${block.data.text}`;
+        result += getParagraph(block);
         break;
       case BlockType.LIST:
-        result += `${block.data.text}`;
+        result += getList(block);
         break;
       case BlockType.UNSPLASH:
-        if (block.data.position === 'center') {
-          const image = `<img src='${block.data.raw.urls.regular}' alt='${block.data.raw.alt_description}'/>`;
-          result += image;
-        } else if (
-          block.data.position === 'left' ||
-          block.data.position === 'right'
-        ) {
-          // const image = `<img src='${block.data.raw.urls.regular}' alt='${block.data.raw.alt_description}'/>`;
-          const image = `<img class='oak-editor-two-column--img-${block.data.position}' src='${block.data.raw.urls.regular}' alt='${block.data.raw.alt_description}'>${block.data.text}</img><div style="clear:both" />`;
-          // result += `<div class="oak-editor-two-column">${image}<div>${block.data.text}</div></div>`;
-          result += image;
-        }
+        result += getUnsplash(block);
         break;
       default:
         break;

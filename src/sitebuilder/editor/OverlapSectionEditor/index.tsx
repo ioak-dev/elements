@@ -2,117 +2,72 @@ import React, { useEffect, useState } from 'react';
 import { newId } from '../../../utils/BasicUtil';
 import './style.scss';
 import MetaDetails from './MetaDetails';
-import ContentBuilder from '../../components/ContentBuilder';
-import ContentType from '../../ContentType';
-import BackgroundView from '../../components/BackgroundView';
-import {
-  getContentClass,
-  getContentContainerClass,
-  getOverlapSectionClass,
-  getTextAlignment,
-} from '../../service/SitebuilderService';
-import ContentFrame from '../../components/ContentFrame';
-import ContentFrameGroup from '../../components/ContentFrameGroup';
+import { getOverlapSectionClass } from '../../service/EditorHelperService';
 import SingleSectionEditor from '../SingleSectionEditor';
+import { OverlapSectionEditorType } from './OverlapSectionEditorType';
 
 interface Props {
-  value: any;
+  value: OverlapSectionEditorType;
   handleChange: any;
   placeholder?: string;
+  currentEditorId?: string;
+  stopEditing?: any;
 }
 const OverlapSectionEditor = (props: Props) => {
-  const [isEditOpen, setIsEditOpen] = useState(false);
-
-  const handleContentChange = (content: any) => {
-    console.log(content);
-    const _value = { ...props.value, content };
-    props.handleChange(_value);
-  };
-
-  useEffect(() => {
-    const el = document.getElementById(elementId);
-    if (
-      el &&
-      props.value?.background?.source === 'UNSPLASH' &&
-      props.value?.background?.data?.urls
-    ) {
-      el.style.backgroundImage = `url("${props.value.background.data.urls.regular}")`;
-      el.style.backgroundColor = 'inherit';
-    }
-    if (el && props.value?.background?.source === 'SOLID-COLOR') {
-      el.style.backgroundImage = 'none';
-      if (props.value?.background?.data?.color === 'custom') {
-        el.style.backgroundColor = props.value?.background?.data?.hex;
-      } else if (props.value?.background?.data?.color === 'default') {
-        el.style.backgroundColor = 'var(--color-surface)';
-      } else {
-        el.style.backgroundColor = `var(--color-${props.value?.background?.data?.color})`;
-      }
-    }
-  }, [props.value]);
-
   const handleMetaChange = (value: any) => {
-    console.log(value);
-    const _value = { ...props.value, foregroundSection: value };
+    props.handleChange(value);
+  };
+
+  const handleMainSectionChange = (value: any) => {
+    const _value = { ...props.value, mainSection: value };
     props.handleChange(_value);
   };
 
-  const handleChangeBackground = (value: any) => {
-    const _value = { ...props.value };
-    _value.background = value;
-    console.log(_value);
-    props.handleChange(_value);
-  };
-
-  const handleBackgroundSectionChange = (value: any) => {
-    console.log(value);
-    const _value = { ...props.value, backgroundSection: value };
-    props.handleChange(_value);
-  };
-
-  const handleForegroundSectionChange = (value: any) => {
-    console.log(value);
-    const _value = { ...props.value, foregroundSection: value };
+  const handleSubSectionChange = (value: any) => {
+    const _value = { ...props.value, subSection: value };
     props.handleChange(_value);
   };
 
   const elementId = newId();
 
   return (
-    <>
+    <div
+      className={`overlap-section-editor overlap-section-editor--offset-${props.value.meta.offset} overlap-section-editor--offset-position-${props.value.meta.offsetPosition}`}
+    >
       <MetaDetails
-        isActive={isEditOpen}
+        isActive={props.currentEditorId === props.value.id}
         handleChange={handleMetaChange}
-        value={props.value.foregroundSection}
-        deactivate={() => setIsEditOpen(false)}
+        value={props.value}
+        deactivate={props.stopEditing}
       />
       <SingleSectionEditor
-        value={props.value.backgroundSection}
-        handleChange={handleBackgroundSectionChange}
+        value={props.value.mainSection}
+        handleChange={handleMainSectionChange}
+        childrenAtBottom={props.value.meta.offsetPosition === 'bottom'}
         // handleEditRequest={() => setIsEditOpen(true)}
       >
         <div
           className={getOverlapSectionClass(
-            props.value.backgroundSection.height,
-            props.value.foregroundSection.width,
-            props.value.foregroundSection.offset
+            props.value.mainSection.meta.height,
+            props.value.meta.width,
+            props.value.meta.offset,
+            props.value.meta.offsetPosition
           )}
         >
           <SingleSectionEditor
-            value={props.value.foregroundSection}
-            handleChange={handleForegroundSectionChange}
-            handleEditRequest={() => setIsEditOpen(true)}
+            value={props.value.subSection}
+            handleChange={handleSubSectionChange}
           />
         </div>
       </SingleSectionEditor>
-      {/* <BackgroundView
-        value={props.value.background}
-        handleChange={handleChangeBackground}
+      {/* <MainView
+        value={props.value.main}
+        handleChange={handleChangeMain}
       >
         <div className="overlap-section__container">
           <SingleSectionEditor
             value={props.value.child}
-            handleChange={handleBackgroundSectionChange}
+            handleChange={handleMainSectionChange}
             // handleEditRequest={() => setIsEditOpen(true)}
           />
         </div>
@@ -125,8 +80,8 @@ const OverlapSectionEditor = (props: Props) => {
           content={props.value.content}
           handleChange={handleContentChange}
         />
-      </BackgroundView> */}
-    </>
+      </MainView> */}
+    </div>
   );
 };
 

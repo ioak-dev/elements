@@ -66,15 +66,6 @@ const MetaDetails = (props: Props) => {
           <OakRadio name="light" radioGroupName={`color-${groupId}`}>
             Light
           </OakRadio>
-          <OakRadio name="primary" radioGroupName={`color-${groupId}`}>
-            Primary
-          </OakRadio>
-          <OakRadio name="secondary" radioGroupName={`color-${groupId}`}>
-            Secondary
-          </OakRadio>
-          <OakRadio name="auto" radioGroupName={`color-${groupId}`}>
-            Auto
-          </OakRadio>
           <OakRadio name="custom" radioGroupName={`color-${groupId}`}>
             Custom color
           </OakRadio>

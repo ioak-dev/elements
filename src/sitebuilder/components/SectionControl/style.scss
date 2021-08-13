@@ -1,0 +1,13 @@
+.section-control {
+  display: grid;
+  grid-auto-flow: column;
+  justify-content: space-between;
+  align-items: center;
+  margin: 10px 10px;
+}
+.section-control__left,
+.section-control__right {
+  display: grid;
+  grid-auto-flow: column;
+  column-gap: 10px;
+}
